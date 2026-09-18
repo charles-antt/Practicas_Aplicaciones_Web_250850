@@ -1,0 +1,22 @@
+/* Esto es un comentario en CSS */
+
+body { /* Selector de componentes de la página */
+    background-color: skyblue;
+   
+}
+
+#acerca-de-mi
+{
+    background-color: greenyellow;
+}
+
+.menu_option
+{
+    background-color: purple;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.menu_option:hover
+{
+    background-color: white;
+}
