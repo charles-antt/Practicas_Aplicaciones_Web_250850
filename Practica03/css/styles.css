@@ -176,6 +176,7 @@ blockquote{
 
 .boton{
     display: inline-block;
+    align-self: flex-start; /* Evita que Flexbox estire el botón a todo el ancho */
     margin-top: 15px;
     padding: 14px 30px;
     background: rgba(255, 255, 255, 0.9);
