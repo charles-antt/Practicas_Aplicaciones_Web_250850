@@ -13,4 +13,4 @@ Periodo: Septiembre-Diciembre
 |------|-----------------------|-------------|-------------|---------|
 |1 | Métodología de la Evaluación | Transcribir en libreta y comprender la metodología y fechas de la evaluación de la asignatura | 5| 🟢 Concluida |
 |2 | Mi Primera Página Web  | Codificar la Primera Página Web con HTML puro, sin estilos ni funcionalidades | 10 | 🟢 Concluida |
-| 3| Pagina 3 | codificar la pagina de mi perfil | | 
+| 3| Pagina 3 | codificar la pagina de mi perfil | | 🟢 Concluida | 
