@@ -15,10 +15,7 @@
 
     <title>Mi Primera Página Web</title>
 
-    <link rel="icon"
-          type="image/png"
-          href="/Practica03/assie/images/pintura.png">
-
+    <link rel="icon" type="image/x-icon" href="assie/images/pintura.png">
     <link rel="stylesheet"
           href="css/styles.css">
 </head>
@@ -277,47 +274,47 @@
              class="seccion solido-4">
 
         <h2>⭐ Mis favoritos</h2>
+        <p class="favoritos-intro">
+            Descubre mis historias y canciones favoritas. Selecciona una tarjeta para explorar su contenido</p>
 
-        <div class="grid">
+        <div class="carrusel" aria-label="Carrusel de Favoritos">
+            <button class="carrusel-flecha" id="anterior" type="button" aria-label="Favorito Anterior"> &#10094; </button>
+        <div class="carrusel-ventana">
+            <div class="carrusel-pista" id="pista">
+                <button class="favorito-card" type="button" data-tipo="video" data-src="/Practica03/assie/media/trailer.mp4"
+                data-titulo="🎬 Mi pelicula favorita: The black phone">
+                    <img src="/Practica03/assie/images/portada_pelicula.jpg" alt="Portada de The black phone" loading="lazy">
+                    <span class="favorito-info"><strong>The black phone</strong><small>ver trailes MP4</small></span>
+                </button>
+                
+                <button class="favorito-card" type="button" data-tipo="audio" data-src="/Practica03/assie/media/cancion.mp3"
+                data-titulo=" 🎵 Mi cancion favorita">
+                    <img src="/Practica03/assie/images/portada_cancion.jpg" alt="Portada de la canción favorita" loading="lazy">
+                    <span class="favorito-info"><strong>Mi cancion favorita</strong><small> Escuchar MP3</small></span>
+                </button>
 
-            <article class="card">
-                <h3>🎬 Película favorita</h3>
-
-                <img src="/Practica03/assie/images/portada_pelicula.jpg"
-                     alt="Película favorita">
-
-                <p>
-                    The Black Phone
-                </p>
-            </article>
-
-            <article class="card">
-
-                <h3>🎵 Canción favorita</h3>
-
-                <p>
-                    Si Nunca Va a Amanecer - Charles Ans
-                </p>
-                <img src="/Practica03/assie/images/portada_cancion.jpg">
-
-                <audio controls>
-                    <source src="/Practica03/assie/media/CHARLES ANS - SI NUNCA VA AMANECER _ Por los martes que me diste. - Charles Ans.mp3"
-                            type="audio/mpeg">
-                </audio>
-
-            </article>
-
-            <article class="card">
-                <h3>📚 Libro favorito</h3>
-                <p>
-                    <img src="/Practica03/assie/images/portada_libro.jpg">
-                    La tregua - Mario Benedeti 
-                </p>
-            </article>
-
+                <button class="favorito-card" type="button" data-tipo="pdf" data-src="/Practica03/assie/media/libro.pdf"
+                data-titulo=" 📚Mi libro favorito: Un capitulo">
+                    <img src="/Practica03/assie/images/portada_libro.jpg" alt="Portada del libro favorito" loading="lazy">
+                    <span class="favorito-info"><strong>Mi libro favorito</strong><small> Leer capitulo PDF</small></span>
+                </button>
+            </div>
         </div>
-
+        <button class="carrusel-flecha" id="siguiente" type="button" aria-label="Favorito Siguiente"> &#10095; </button>
+        </div>
+        <div class="carrusel-indicadores" id="indicadores" aria-label="Seleccionar favorito"></div>
     </section>
+
+    <!-- Modal para reproducción de multimedia -->
+    <div id="modal-favoritos" class="modal-favoritos" hidden>
+        <div class="modal-planel">
+            <div class="modal-cabecera">
+                <h2 id="modal-titulo">Título del recurso</h2>
+                <button id="cerrar-modal" class="modal-cerrar" aria-label="Cerrar modal">&times;</button>
+            </div>
+            <div id="modal-contenido" class="modal-contenido"></div>
+        </div>
+    </div>
 
 
     <!-- ============================= -->
@@ -474,17 +471,18 @@
                 rel="noopener noreferrer"
                 aria-label="YouTube">
 
-                <svg viewBox="0 0 24 24">
-                    <!-- Cuerpo de YouTube ajustado a escala 24x24 -->
-                    path fill="currentColor"
-                        d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 
-                        .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505
-                        0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z"/>
-        
-                        <!-- Triángulo de reproducción con color adaptado para mantener contraste -->
-                    <polygon points="9.545,15.568 15.818,12 9.545,8.432" fill="#0f172a"/>
-
-                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="120" height="85">
+                <defs>
+                    <mask id="yt-cutout">
+                        <!-- Fondo blanco para mostrar el logo -->
+                        <rect x="0" y="0" width="576" height="512" fill="#FFFFFF" />
+                        <!-- Triángulo negro para hacer transparente la parte central -->
+                            <path d="M232 337.521V174.479L374.821 256 232 337.521z" fill="#000000" />
+                    </mask>
+                </defs>
+                <!-- Cuerpo del logo en color blanco con el recorte aplicado -->
+            <path fill="#FFFFFF" mask="url(#yt-cutout)" d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305z"/>
+            </svg>
 
                 <span>YouTube</span>
 
@@ -514,6 +512,6 @@
     </footer>
 
 
-    <script src="js/app.js"></script>
+    <script src="/Practica03/js/app.js"></script>
 
 </body>
