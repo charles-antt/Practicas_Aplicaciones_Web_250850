@@ -18,7 +18,7 @@ body {
         sans-serif;
 
     background: #0f172a;
-    color: #CCC;
+    color: #cf9c9c;
     line-height: 1.6;
 }
 
@@ -128,22 +128,22 @@ nav a:hover {
 
 .parallax-1 {
     background-image:
-        url("/Practica03/assie/images/fondo1.png");
+        url("../assie/images/fondo1.png");
 }
 
 .parallax-2 {
     background-image:
-        url("/Practica03/assie/images/fondo2.jpg");
+        url("../assie/images/fondo2.jpg");
 }
 
 .parallax-3 {
     background-image:
-        url("/Practica03/assie/images/fondo3.jpg");
+        url("../assie/images/fondo3.jpg");
 }
 
 .parallax-4 {
     background-image:
-        url("/Practica03/assie/images/fondo4.jpg");
+        url("../assie/images/fondo4.jpg");
 }
 
 
@@ -178,8 +178,8 @@ nav a:hover {
 /* ============================= */
 
 .hero-card {
-    max-width: 900px; /* Ancho suficiente para imagen + texto lado a lado */
-    width: 75%;
+    max-width: 1500px; /* Ancho suficiente para imagen + texto lado a lado */
+    width: 85%;
     padding: 40px;
     
     /* Disposición Flexbox */
@@ -308,31 +308,31 @@ blockquote {
 
 .solido-1 {
     background:
-        #f8fafc;
+        #aab8c6;
 }
 
 .solido-2 {
     background:
-        #111827;
+        #424b5d;
 
     color: white;
 }
 
 .solido-3 {
     background:
-        #e0f2fe;
+        #a6b0b6;
 }
 
 .solido-4 {
     background:
-        #1e293b;
+        #313947;
 
     color: white;
 }
 
 .redes {
     background:
-        #f1f5f9;
+        #b5c4d2;
 }
 
 
@@ -348,7 +348,7 @@ blockquote {
 
 .card {
     background:
-        rgba(255, 255, 255, 0.88);
+        rgb(222 205 205 / 88%);
 
     color: #222;
 
@@ -393,7 +393,7 @@ blockquote {
 
     text-align: center;
 
-    background: white;
+    background: #d4cbcb;
 
     border-radius: 18px;
 
@@ -499,7 +499,7 @@ blockquote {
         linear-gradient(
             145deg,
             #1e293b,
-            #334155
+            #27313f
         );
 
     border-radius: 18px;
@@ -521,8 +521,8 @@ blockquote {
     background:
         linear-gradient(
             145deg,
-            #2563eb,
-            #7c3aed
+            #9aacd2,
+            #110525
         );
 }
 
@@ -598,11 +598,11 @@ body {
 }
 
 .solido-1, .solido-3, .redes {
-    color: #17253b;
+    color: #304360;
 }
 
 .solido-2, .solido-4 {
-    color: #f8fafc;
+    color: #80868c;
 }
 
 .seccion h2 {
@@ -618,7 +618,7 @@ body {
 }
 
 .hero-card {
-    width: min(46%, 690px);
+    width: min(95%, 690px);
     min-width: 0;
     padding: 22px 25px;
     gap: 22px;
@@ -845,8 +845,9 @@ body.modal-abierto {
 }
 
 .boton:hover {
-    background: #2563eb; /* Cambia el fondo a azul */
+    background: #414d66; /* Cambia el fondo a azul */
     color: #ffffff;      /* Cambia el texto a blanco */
     transform: translateY(-4px);
     box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
 }
+
