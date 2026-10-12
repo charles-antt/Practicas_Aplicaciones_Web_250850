@@ -7,7 +7,7 @@
   "description": "Periodo: Septiembre-Diciembre",
   "main": "index.js",
   "scripts": {
-    "deploy": "npx gh-pages -d .
+    "deploy": "npx gh-pages -d ."
   },
   "repository": {
     "type": "git",
