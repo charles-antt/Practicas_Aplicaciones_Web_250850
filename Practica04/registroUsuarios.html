@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MecaGest: Formulario de Registro de Nuevos Usuarios - 250850</title>
+</head>
+<body>
+    <header> 
+        <h1>MecaGest</h1>
+        <h2>Registro de Nuevos Usuarios</h2>
+        <p>Complete los cambios para solicitar una cuenta en el sistema</p>
+    </header>
+    <main>
+        <form action="" method="post">
+            <fieldset>
+                <legend>Datos Personales</legend>
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Carlos Eduardo" required>
+            <br>
+            <label for="apPaterno">Apellido Paterno:</label>
+            <input type="text" id="apPaterno" name="apPaterno" placeholder="Antonio" required>
+            <br>
+            <label for="apMaterno">Apellido Materno:</label>
+            <input type="text" id="apMaterno" name="apMaterno" placeholder="Alvarez">
+            <br>
+             <label for="genero">Género:</label>
+            <select id="genero" name="genero">
+                <option value="M">Masculino</option>
+                <option value="F">Femenino</option>
+                <option value="X">Prefiero no decirlo</option>
+            </select>
+            <br>
+            <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+            <input type="date" id="fechaNacimiento" name="fechaNacimiento" required>
+            </fieldset>
+
+            <fieldset>
+                <legend>Datos de Contacto</legend> 
+            <label for="correo">Correo Electrónico:</label>
+            <input type="email" id="correo" name="correo" placeholder="carlos@ejemplo.com">
+            <br>
+            <label for="telefono">Número de Teléfono:</label>
+            <input type="tel" id="telefono" name="telefono" placeholder="+52 55 1234 5678">
+            <br>
+            <label for="tipoNum">Tipo de Número:</label>
+            <select id="tipoNum" name="tipoNum">
+                <option value="movil">Móvil</option>
+                <option value="casa">Casa</option>
+                <option value="trabajo">Trabajo</option>
+            </select>
+            <br>
+            <label for="horarioContacto">Favor de Contactar en el horario:</label>
+            <input type="hour" id="horarioContactoInicio" name="horarioContactoInicio" placeholder="9:00 "> a 
+            <input type="hour" id="horarioContactoFin" name="horarioContactoFin" placeholder="18:00 ">
+            </fieldset>
+
+            <fieldset>
+                <legend>Datos de Acceso</legend>
+                <label for="usuario">Nombre de Usuario:</label>
+                <input type="text" id="usuario" name="usuario" placeholder="carlos123" required>
+                <br>
+                <label for="contrasena">Contraseña:</label>
+                <input type="password" id="contrasena" name="contrasena" placeholder="********" required>
+                <br>
+                <label for="confirmarContrasena">Confirmar Contraseña:</label>
+                <input type="password" id="confirmarContrasena" name="confirmarContrasena" placeholder="********" required>
+            </fieldset>
+
+            <fieldset>
+                <legend>Datos de Ubicación</legend>
+                <label for="direccion">Dirección:</label>
+                <input type="text" id="direccion" name="direccion" placeholder="Calle , Número, Colonia, Ciudad" required>
+                <br>
+                <label for="pais">País:</label>
+                <input type="text" id="pais" name="pais" placeholder="País" required>
+                <br>
+                <label for="estado">Estado:</label>
+                <input type="text" id="estado" name="estado" placeholder="Estado" required>
+                <br>
+                <label for="ciudad">Ciudad:</label>
+                <input type="text" id="ciudad" name="ciudad" placeholder="Ciudad" required>
+                <br>
+                <label for="codigoPostal">Código Postal:</label>
+                <input type="text" id="codigoPostal" name="codigoPostal" placeholder="12345" required>
+            </fieldset>
+        </form></main>
+
+</body>
+</html>
