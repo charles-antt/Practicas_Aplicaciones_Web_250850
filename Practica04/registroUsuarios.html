@@ -15,6 +15,19 @@
         <form action="" method="post">
             <fieldset>
                 <legend>Datos Personales</legend>
+                <label for="titulo">Título de Cortesía:</label>
+                <select id="titulo" name="titulo">
+                    <option>Sr</option>
+                    <option>Sra</option>
+                    <option>Srita</option>
+                    <option>Dr</option>
+                    <option>Dra</option>
+                    <option>Ing</option>
+                    <option>Lic</option>
+                    <option>Prof</option>
+                    <option>Ninguno</option>
+                </select>
+            <br>
             <label for="nombre">Nombre:</label>
             <input type="text" id="nombre" name="nombre" placeholder="Carlos Eduardo" required>
             <br>
@@ -51,8 +64,8 @@
             </select>
             <br>
             <label for="horarioContacto">Favor de Contactar en el horario:</label>
-            <input type="hour" id="horarioContactoInicio" name="horarioContactoInicio" placeholder="9:00 "> a 
-            <input type="hour" id="horarioContactoFin" name="horarioContactoFin" placeholder="18:00 ">
+            <input type="time" id="horarioContactoInicio" name="horarioContactoInicio" > a 
+            <input type="time" id="horarioContactoFin" name="horarioContactoFin" >
             </fieldset>
 
             <fieldset>
@@ -84,7 +97,100 @@
                 <label for="codigoPostal">Código Postal:</label>
                 <input type="text" id="codigoPostal" name="codigoPostal" placeholder="12345" required>
             </fieldset>
-        </form></main>
+
+            <br>
+            <input type="checkbox" value="valido">Acepto los términos y las condiciones del uso  de la plataforma
+             de MecaGest.
+            <br><br> 
+            <input type="submit" value="Envias solicitud " disabled>
+            <input type="reset" value="Limpiar Formulario">
+        </form>
+
+        <br>
+        <br>
+        <form> <!-- Elemento sinput que usaremos más tarde-->
+            <fieldset>
+            <legend>Visualización de citas por mes</legend>
+            <label for="mesCitas">Por favor elige el mes: </label>
+            <input type="month">
+            <button id="verCitas">Ver citas</button>
+            <br>
+
+            <h4>Las citas programadas para el mes elegido son: </h4>
+            <br>
+            <table style="border: 1px solid black">
+                <tr>
+                    <th style="border: 1px solid black;">No.</th>
+                    <th style="border: 1px solid black;">Nombre</th>
+                    <th style="border: 1px solid black;">Descripción</th>
+                    <th style="border: 1px solid black;">Fecha Programada</th>
+                    <th style="border: 1px solid black;">Estatus Actual</th>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black;">1.- </td>
+                    <td style="border: 1px solid black;">Cita de entrega de unidad reparada con 
+                        el cliente: Mauricio Mejía, Unidad: Volkswagen, Jetta 2020</td>
+                    <td style="border: 1px solid black;">Se realizo un camcio de bujías, 
+                        la unidad esta lista para entrega</td>
+                    <td style="border: 1px solid black;">10 de octubre de 2026</td>
+                    <td style="border: 1px solid black;">Atendida</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black;">2.-</td>
+                    <td style="border: 1px solid black;">Cita de valoración con el cliente: Carlos E. Antonio,
+                        Unidad: Renault, Duster 2014
+                    </td>
+                    <td style="border: 1px solid black;">El cliente solicita una revisión del cuerpo de aceleración 
+                        de la unidad para posible mantenimiento correctivo 
+                    </td>
+                    <td style="border: 1px solid black;">17 de octubre de 2026</td>
+                    <td style="border: 1px solid black;">Programada</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black;">3.- </td>
+                    <td style="border: 1px solid black;">Cita de revisión con el cliente: Mauricio Mejía,
+                        Unidad: Volkwagen, Jetta 2020
+                    </td>
+                    <td style="border: 1px solid black;">A la unidad se le hicieron un cambio de bujías, 
+                        pero el cliente reporta un sonido extraño
+                    </td>
+                    <td style="border: 1px solid black;">17 de Octubre de 2026</td>
+                    <td style="border: 1px solid black;">Programada</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black;">4.-</td>
+                    <td style="border: 1px solid black;">Cita de valoración con el cliente: Alejandra Romero,
+                        Unidad: Toyota, Hylux 2012
+                    </td>
+                    <td style="border: 1px solid black;">El cliente solicita una revisión del cuerpo de aceleración 
+                        de la unidad para un posible mantenimiento correctivo
+                    </td>
+                    <td style="border: 1px solid black;">16 de Octubre de 2026</td>
+                    <td style="border: 1px solid black;">Cancelada</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black;">4.-</td>
+                    <td style="border: 1px solid black;">Cita de valoración con el cliente: Alejandra Romero,
+                        Unidad: Toyota, Hylux 2012
+                    </td>
+                    <td style="border: 1px solid black;">El cliente solicita una revisión del cuerpo de aceleración 
+                        de la unidad para un posible mantenimiento correctivo
+                    </td>
+                    <td style="border: 1px solid black;">20 de Octubre de 2026</td>
+                    <td style="border: 1px solid black;">Reprogramada</td>
+                </tr>
+            </table>
+            </fieldset>
+
+            <fieldset>
+                <legend>Configuraciones de la Interfaz: </legend>
+                <label for="fontColor">Color de la fuente: </label>
+                <input type="color" id="fontColor">
+                <br>
+                <label for="bakcgroundColor" >Color de Fondo</label>
+                <input type="color" id="backgroundColor" value="#ccc">
+        </form>
+    </main>
 
 </body>
 </html>
