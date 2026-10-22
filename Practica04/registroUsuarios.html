@@ -1,225 +1,241 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MecaGest: Formulario de Registro de Nuevos Usuarios - 250850</title>
+    <title>MecaGest - Panel de Administración</title>
+    <link rel="stylesheet" href="/Practica04/css/style.css">
+     <link rel="icon" type="image/x-icon" href="/Practica04/images/logotipo.png">
+    <!-- Iconos de Google Font (Material Symbols) -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 <body>
-    <header> 
-        <h1>MecaGest</h1>
-        <h2>Registro de Nuevos Usuarios</h2>
-        <p>Complete los cambios para solicitar una cuenta en el sistema</p>
-    </header>
-    <main>
-        <form action="" method="post">
-            <fieldset>
-                <legend>Datos Personales</legend>
-                <label for="titulo">Título de Cortesía:</label>
-                <select id="titulo" name="titulo">
-                    <option>Sr</option>
-                    <option>Sra</option>
-                    <option>Srita</option>
-                    <option>Dr</option>
-                    <option>Dra</option>
-                    <option>Ing</option>
-                    <option>Lic</option>
-                    <option>Prof</option>
-                    <option>Ninguno</option>
-                </select>
-            <br>
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre" placeholder="Carlos Eduardo" required>
-            <br>
-            <label for="apPaterno">Apellido Paterno:</label>
-            <input type="text" id="apPaterno" name="apPaterno" placeholder="Antonio" required>
-            <br>
-            <label for="apMaterno">Apellido Materno:</label>
-            <input type="text" id="apMaterno" name="apMaterno" placeholder="Alvarez">
-            <br>
-             <label for="genero">Género:</label>
-            <select id="genero" name="genero">
-                <option value="M">Masculino</option>
-                <option value="F">Femenino</option>
-                <option value="X">Prefiero no decirlo</option>
-            </select>
-            <br>
-            <label for="fechaNacimiento">Fecha de Nacimiento:</label>
-            <input type="date" id="fechaNacimiento" name="fechaNacimiento" required>
-            </fieldset>
 
-            <fieldset>
-                <legend>Datos de Contacto</legend> 
-            <label for="correo">Correo Electrónico:</label>
-            <input type="email" id="correo" name="correo" placeholder="carlos@ejemplo.com">
-            <br>
-            <label for="telefono">Número de Teléfono:</label>
-            <input type="tel" id="telefono" name="telefono" placeholder="+52 55 1234 5678">
-            <br>
-            <label for="tipoNum">Tipo de Número:</label>
-            <select id="tipoNum" name="tipoNum">
-                <option value="movil">Móvil</option>
-                <option value="casa">Casa</option>
-                <option value="trabajo">Trabajo</option>
-            </select>
-            <br>
-            <label for="horarioContacto">Favor de Contactar en el horario:</label>
-            <input type="time" id="horarioContactoInicio" name="horarioContactoInicio" > a 
-            <input type="time" id="horarioContactoFin" name="horarioContactoFin" >
-            </fieldset>
+    <div class="app-layout">
+        <!-- 1. Menú Lateral Izquierdo (Sidebar) -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <img src="/Practica04/images/logotipo.png" alt="Logo SGTM" class="logo-img">
+            </div>
 
-            <fieldset>
-                <legend>Datos de Acceso</legend>
-                <label for="usuario">Nombre de Usuario:</label>
-                <input type="text" id="usuario" name="usuario" placeholder="carlos123" required>
-                <br>
-                <label for="contrasena">Contraseña:</label>
-                <input type="password" id="contrasena" name="contrasena" placeholder="********" required>
-                <br>
-                <label for="confirmarContrasena">Confirmar Contraseña:</label>
-                <input type="password" id="confirmarContrasena" name="confirmarContrasena" placeholder="********" required>
-            </fieldset>
+            <nav class="sidebar-menu">
+                <a href="#" class="menu-item"><span class="material-symbols-outlined">dashboard</span> Dashboard</a>
+                <a href="#" class="menu-item"><span class="material-symbols-outlined">group</span> Clientes</a>
+                <a href="#" class="menu-item"><span class="material-symbols-outlined">directions_car</span> Vehículos</a>
+                <a href="#" class="menu-item"><span class="material-symbols-outlined">assignment</span> Órdenes de Trabajo</a>
+                <a href="#" class="menu-item active"><span class="material-symbols-outlined">build</span> Registro y Servicios</a>
+                <a href="#" class="menu-item"><span class="material-symbols-outlined">inventory_2</span> Inventario</a>
+                <a href="#" class="menu-item"><span class="material-symbols-outlined">calendar_month</span> Agenda de Citas</a>
+                <a href="#" class="menu-item"><span class="material-symbols-outlined">payments</span> Facturación</a>
+                <a href="#" class="menu-item"><span class="material-symbols-outlined">analytics</span> Reportes</a>
+                <a href="#" class="menu-item"><span class="material-symbols-outlined">settings</span> Configuración</a>
+            </nav>
 
-            <fieldset>
-                <legend>Datos de Ubicación</legend>
-                <label for="direccion">Dirección:</label>
-                <input type="text" id="direccion" name="direccion" placeholder="Calle , Número, Colonia, Ciudad" required>
-                <br>
-                <label for="pais">País:</label>
-                <input type="text" id="pais" name="pais" placeholder="País" required>
-                <br>
-                <label for="estado">Estado:</label>
-                <input type="text" id="estado" name="estado" placeholder="Estado" required>
-                <br>
-                <label for="ciudad">Ciudad:</label>
-                <input type="text" id="ciudad" name="ciudad" placeholder="Ciudad" required>
-                <br>
-                <label for="codigoPostal">Código Postal:</label>
-                <input type="text" id="codigoPostal" name="codigoPostal" placeholder="12345" required>
-            </fieldset>
+            <div class="sidebar-footer">
+                <span class="material-symbols-outlined">help</span>
+                <div>
+                    <p class="footer-title">¿Necesitas ayuda?</p>
+                    <p class="footer-sub">Soporte técnico</p>
+                </div>
+            </div>
+        </aside>
 
-            <br>
-            <input type="checkbox" value="valido">Acepto los términos y las condiciones del uso  de la plataforma
-             de MecaGest.
-            <br><br> 
-            <input type="submit" value="Envias solicitud " disabled>
-            <input type="reset" value="Limpiar Formulario">
-        </form>
+        <!-- Contenido Principal -->
+        <div class="main-wrapper">
+            <!-- 2. Barra Superior (Header Top) -->
+            <header class="top-navbar">
+                <div class="header-title">
+                    <span class="material-symbols-outlined menu-toggle">menu</span>
+                    <div>
+                        <h1>MecaGest: Registro de Usuarios y Citas</h1>
+                        <p class="breadcrumb">Inicio > Registro y Servicios</p>
+                    </div>
+                </div>
+                <div class="header-user">
+                    <span class="material-symbols-outlined icon-btn">notifications</span>
+                    <span class="material-symbols-outlined icon-btn">help</span>
+                    <div class="user-profile">
+                        <span class="material-symbols-outlined">account_circle</span>
+                        <span>Administrador</span>
+                    </div>
+                </div>
+            </header>
 
-        <br>
-        <br>
-        <form> <!-- Elemento sinput que usaremos más tarde-->
-            <fieldset>
-            <legend>Visualización de citas por mes</legend>
-            <label for="mesCitas">Por favor elige el mes: </label>
-            <input type="month">
-            <button id="verCitas">Ver citas</button>
-            <br>
+            <!-- 3. Contenido de Formularios y Datos (Dashboard Grid) -->
+            <main class="content-area">
+                <form action="" method="post" class="dashboard-grid">
+                    
+                    <!-- Columna 1: Datos Personales y Acceso -->
+                    <div class="grid-column">
+                        <fieldset class="card">
+                            <legend>Datos Personales</legend>
+                            <div class="form-group">
+                                <label for="titulo">Título:</label>
+                                <select id="titulo" name="titulo">
+                                    <option>Sr</option>
+                                    <option>Sra</option>
+                                    <option>Dr</option>
+                                    <option>Ing</option>
+                                    <option>Lic</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="nombre">Nombre:</label>
+                                <input type="text" id="nombre" name="nombre" placeholder="Carlos Eduardo" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="apPaterno">Apellido Paterno:</label>
+                                <input type="text" id="apPaterno" name="apPaterno" placeholder="Antonio" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="apMaterno">Apellido Materno:</label>
+                                <input type="text" id="apMaterno" name="apMaterno" placeholder="Alvarez">
+                            </div>
+                            <div class="form-group">
+                                <label for="genero">Género:</label>
+                                <select id="genero" name="genero">
+                                    <option value="M">Masculino</option>
+                                    <option value="F">Femenino</option>
+                                    <option value="X">Prefiero no decirlo</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+                                <input type="date" id="fechaNacimiento" name="fechaNacimiento" required>
+                            </div>
+                        </fieldset>
 
-            <h4>Las citas programadas para el mes elegido son: </h4>
-            <br>
-            <table style="border: 1px solid black">
-                <tr>
-                    <th style="border: 1px solid black;">No.</th>
-                    <th style="border: 1px solid black;">Nombre</th>
-                    <th style="border: 1px solid black;">Descripción</th>
-                    <th style="border: 1px solid black;">Fecha Programada</th>
-                    <th style="border: 1px solid black;">Estatus Actual</th>
-                </tr>
-                <tr>
-                    <td style="border: 1px solid black;">1.- </td>
-                    <td style="border: 1px solid black;">Cita de entrega de unidad reparada con 
-                        el cliente: Mauricio Mejía, Unidad: Volkswagen, Jetta 2020</td>
-                    <td style="border: 1px solid black;">Se realizo un camcio de bujías, 
-                        la unidad esta lista para entrega</td>
-                    <td style="border: 1px solid black;">10 de octubre de 2026</td>
-                    <td style="border: 1px solid black;">Atendida</td>
-                </tr>
-                <tr>
-                    <td style="border: 1px solid black;">2.-</td>
-                    <td style="border: 1px solid black;">Cita de valoración con el cliente: Carlos E. Antonio,
-                        Unidad: Renault, Duster 2014
-                    </td>
-                    <td style="border: 1px solid black;">El cliente solicita una revisión del cuerpo de aceleración 
-                        de la unidad para posible mantenimiento correctivo 
-                    </td>
-                    <td style="border: 1px solid black;">17 de octubre de 2026</td>
-                    <td style="border: 1px solid black;">Programada</td>
-                </tr>
-                <tr>
-                    <td style="border: 1px solid black;">3.- </td>
-                    <td style="border: 1px solid black;">Cita de revisión con el cliente: Mauricio Mejía,
-                        Unidad: Volkwagen, Jetta 2020
-                    </td>
-                    <td style="border: 1px solid black;">A la unidad se le hicieron un cambio de bujías, 
-                        pero el cliente reporta un sonido extraño
-                    </td>
-                    <td style="border: 1px solid black;">17 de Octubre de 2026</td>
-                    <td style="border: 1px solid black;">Programada</td>
-                </tr>
-                <tr>
-                    <td style="border: 1px solid black;">4.-</td>
-                    <td style="border: 1px solid black;">Cita de valoración con el cliente: Alejandra Romero,
-                        Unidad: Toyota, Hylux 2012
-                    </td>
-                    <td style="border: 1px solid black;">El cliente solicita una revisión del cuerpo de aceleración 
-                        de la unidad para un posible mantenimiento correctivo
-                    </td>
-                    <td style="border: 1px solid black;">16 de Octubre de 2026</td>
-                    <td style="border: 1px solid black;">Cancelada</td>
-                </tr>
-                <tr>
-                    <td style="border: 1px solid black;">4.-</td>
-                    <td style="border: 1px solid black;">Cita de valoración con el cliente: Alejandra Romero,
-                        Unidad: Toyota, Hylux 2012
-                    </td>
-                    <td style="border: 1px solid black;">El cliente solicita una revisión del cuerpo de aceleración 
-                        de la unidad para un posible mantenimiento correctivo
-                    </td>
-                    <td style="border: 1px solid black;">20 de Octubre de 2026</td>
-                    <td style="border: 1px solid black;">Reprogramada</td>
-                </tr>
-            </table>
-            </fieldset>
+                        <fieldset class="card">
+                            <legend>Datos de Acceso</legend>
+                            <div class="form-group">
+                                <label for="usuario">Nombre de Usuario:</label>
+                                <input type="text" id="usuario" name="usuario" placeholder="carlos123" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contrasena">Contraseña:</label>
+                                <input type="password" id="contrasena" name="contrasena" placeholder="********" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmarContrasena">Confirmar Contraseña:</label>
+                                <input type="password" id="confirmarContrasena" name="confirmarContrasena" placeholder="********" required>
+                            </div>
+                        </fieldset>
+                    </div>
 
-            <fieldset>
-                <legend>Configuraciones de la Interfaz: </legend>
-                <label for="fontColor">Color de la fuente: </label>
-                <input type="color" id="fontColor">
-                <br>
-                <label for="bakcgroundColor" >Color de Fondo</label>
-                <input type="color" id="backgroundColor" value="#ccc">
-            </fieldset>
+                    <!-- Columna 2: Contacto y Ubicación -->
+                    <div class="grid-column">
+                        <fieldset class="card">
+                            <legend>Datos de Contacto</legend>
+                            <div class="form-group">
+                                <label for="correo">Correo Electrónico:</label>
+                                <input type="email" id="correo" name="correo" placeholder="carlos@ejemplo.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="telefono">Teléfono:</label>
+                                <input type="tel" id="telefono" name="telefono" placeholder="+52 55 1234 5678">
+                            </div>
+                            <div class="form-group">
+                                <label for="tipoNum">Tipo de Número:</label>
+                                <select id="tipoNum" name="tipoNum">
+                                    <option value="movil">Móvil</option>
+                                    <option value="casa">Casa</option>
+                                    <option value="trabajo">Trabajo</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Horario de contacto:</label>
+                                <div class="time-range">
+                                    <input type="time" id="horarioContactoInicio" name="horarioContactoInicio">
+                                    <span>a</span>
+                                    <input type="time" id="horarioContactoFin" name="horarioContactoFin">
+                                </div>
+                            </div>
+                        </fieldset>
 
-            <fieldset>
-                <legend>Configuracion de mi Cuenta/Perfil</legend>
-                <label for="userPhoto">Foto de Perfil:</label>
-                <input type="image" id="userPhoto" accept="image/">
-                <input type="image" id="buttonNext" src="/Practica04/images/next.gif">
-                <br>
-                <input type="hidden" id="userId" value="25XXXX">
-            </fieldset>
+                        <fieldset class="card">
+                            <legend>Datos de Ubicación</legend>
+                            <div class="form-group">
+                                <label for="direccion">Dirección:</label>
+                                <input type="text" id="direccion" name="direccion" placeholder="Calle, Número, Colonia" required>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="ciudad">Ciudad:</label>
+                                    <input type="text" id="ciudad" name="ciudad" placeholder="Ciudad" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="codigoPostal">C.P.:</label>
+                                    <input type="text" id="codigoPostal" name="codigoPostal" placeholder="12345" required>
+                                </div>
+                            </div>
+                        </fieldset>
 
-            <fieldset>
-                <legend>Datos Fiscales: </legend>
-                <label for="rfc">Registro Federal de Causantes(RFC):</label>
-                <input type="text" id="rfc" maxlength="13" placeholder="RHAXXXXXXXXXXX">
-                <br>
-                <label for="fiscalSituation">Constancia de Situaciòn fiscal: </label>
-                <input type="file" id="fiscalSituation" accept=".pdf">
-                <input type="hidden" id="userId" value="25XXXX">
-            </fieldset>
+                        <div class="actions-card">
+                            <label class="checkbox-label">
+                                <input type="checkbox" required> Acepto los términos y condiciones.
+                            </label>
+                            <div class="btn-group">
+                                <button type="submit" class="btn btn-primary">Enviar Solicitud</button>
+                                <button type="reset" class="btn btn-secondary">Limpiar</button>
+                            </div>
+                        </div>
+                    </div>
 
-            <fieldset>
-                <legend>Solicitud de Cita:</legend>
-                <label for="dateAppoiment">Fecha de la Cita: </label>
-                <input type="datetime-local" id="dateAppoiment">
-                <br>
-                <label for="descriptionText">Descripcion de la Cita</label>
-                <textarea id="descriptionText"></textarea>
-                <br>
-        </form>
-    </main>
+                    <!-- Columna 3: Tabla de Citas y Configuración -->
+                    <div class="grid-column">
+                        <fieldset class="card">
+                            <legend>Listado de Citas</legend>
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>No.</th>
+                                            <th>Descripción</th>
+                                            <th>Fecha</th>
+                                            <th>Estatus</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Entrega Jetta 2020</td>
+                                            <td>10/10/2026</td>
+                                            <td><span class="badge badge-success">Atendida</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>Valoración Duster</td>
+                                            <td>17/10/2026</td>
+                                            <td><span class="badge badge-warning">Programada</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>Revisión Hilux</td>
+                                            <td>16/10/2026</td>
+                                            <td><span class="badge badge-danger">Cancelada</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </fieldset>
+
+                        <fieldset class="card">
+                            <legend>Ajustes de Perfil</legend>
+                            <div class="form-group">
+                                <label for="userPhoto">Foto de Perfil:</label>
+                                <input type="file" id="userPhoto" accept="image/*">
+                            </div>
+                            <div class="form-group">
+                                <label for="rfc">RFC:</label>
+                                <input type="text" id="rfc" maxlength="13" placeholder="RHAXXXXXXXXXXX">
+                            </div>
+                        </fieldset>
+                    </div>
+
+                </form>
+            </main>
+        </div>
+    </div>
 
 </body>
 </html>
