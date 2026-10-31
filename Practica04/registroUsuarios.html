@@ -34,12 +34,12 @@
 
             <div class="sidebar-footer">
                 <span class="material-symbols-outlined">help</span>
-                <div>
-                    <p class="footer-title">¿Necesitas ayuda?</p>
-                    <p class="footer-sub">Soporte técnico</p>
-                </div>
+                    <div>
+                        <p class="footer-title">¿Necesitas ayuda?</p>
+                        <p class="footer-sub">Soporte técnico</p>
+                    </div>
             </div>
-        </aside>
+            </aside>
 
         <!-- Área Principal de Contenido -->
         <div class="main-wrapper">
@@ -67,7 +67,37 @@
                 
                 <!-- PRIMERA SECCIÓN: FORMULARIO PRINCIPAL DE REGISTRO -->
                 <form action="" method="post" class="dashboard-grid">
-                    
+
+                    <!-- Barra de Pasos Estilo Wizard -->
+                    <div class="wizard-container card">
+                        <div class="wizard-steps">
+                            <div class="wizard-progress-bar">
+                                <div class="wizard-progress-fill" id="wizardProgress"></div>
+                            </div>
+                            
+                            <div class="wizard-step active" data-step="1">
+                                <div class="step-circle">1</div>
+                                <span class="step-label">Datos Personales</span>
+                            </div>
+                            <div class="wizard-step" data-step="2">
+                                <div class="step-circle">2</div>
+                                <span class="step-label">Datos de Acceso</span>
+                            </div>
+                            <div class="wizard-step" data-step="3">
+                                <div class="step-circle">3</div>
+                                <span class="step-label">Contacto</span>
+                            </div>
+                            <div class="wizard-step" data-step="4">
+                                <div class="step-circle">4</div>
+                                <span class="step-label">Ubicación</span>
+                            </div>
+                            <div class="wizard-step" data-step="5">
+                                <div class="step-circle">5</div>
+                                <span class="step-label">Confirmación</span>
+                            </div>
+                        </div>
+                    </div>
+                        
                     <!-- Columna 1: Datos Personales y Acceso -->
                     <div class="grid-column">
                         <fieldset class="card">

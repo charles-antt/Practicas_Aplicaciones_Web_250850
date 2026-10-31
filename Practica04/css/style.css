@@ -10,24 +10,24 @@
   --primary-cyan: #00b4d8;
   --primary-hover: #0093ad;
 }
-
+ 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-
+ 
 body {
   background-color: var(--bg-main);
   color: var(--text-dark);
 }
-
+ 
 .app-layout {
   display: flex;
   min-height: 100vh;
 }
-
+ 
 /* Sidebar Estilo Dashboard */
 .sidebar {
   width: 260px;
@@ -37,25 +37,25 @@ body {
   flex-direction: column;
   flex-shrink: 0;
 }
-
+ 
 .sidebar-logo {
   padding: 20px;
   text-align: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
-
+ 
 .sidebar-logo img {
   max-width: 150px;
   height: auto;
 }
-
+ 
 .sidebar-menu {
   display: flex;
   flex-direction: column;
   padding: 15px 0;
   flex-grow: 1;
 }
-
+ 
 .menu-item {
   display: flex;
   align-items: center;
@@ -66,19 +66,19 @@ body {
   font-size: 0.9rem;
   transition: all 0.2s ease;
 }
-
+ 
 .menu-item:hover {
   background-color: rgba(255, 255, 255, 0.05);
   color: #fff;
 }
-
+ 
 .menu-item.active {
   background-color: var(--bg-sidebar-active);
   color: #fff;
   border-radius: 0 25px 25px 0;
   margin-right: 15px;
 }
-
+ 
 .sidebar-footer {
   padding: 20px;
   display: flex;
@@ -86,17 +86,17 @@ body {
   gap: 10px;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
-
+ 
 .footer-title {
   font-weight: 600;
   font-size: 0.85rem;
 }
-
+ 
 .footer-sub {
   font-size: 0.75rem;
   color: var(--text-light);
 }
-
+ 
 /* Contenido Principal */
 .main-wrapper {
   flex-grow: 1;
@@ -104,7 +104,7 @@ body {
   flex-direction: column;
   overflow-x: hidden;
 }
-
+ 
 .top-navbar {
   background-color: #08152c;
   color: #fff;
@@ -113,30 +113,30 @@ body {
   justify-content: space-between;
   align-items: center;
 }
-
+ 
 .header-title h1 {
   font-size: 1.2rem;
   font-weight: 600;
 }
-
+ 
 .breadcrumb {
   font-size: 0.8rem;
   color: #94a3b8;
 }
-
+ 
 .header-user {
   display: flex;
   align-items: center;
   gap: 15px;
 }
-
+ 
 .user-profile {
   display: flex;
   align-items: center;
   gap: 6px;
   font-size: 0.9rem;
 }
-
+ 
 /* Áreas del Formulario */
 .content-area {
   padding: 25px;
@@ -144,23 +144,23 @@ body {
   flex-direction: column;
   gap: 20px;
 }
-
+ 
 .dashboard-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 20px;
 }
-
+ 
 .grid-column {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
-
+ 
 .full-width-column {
   grid-column: 1 / -1;
 }
-
+ 
 .card {
   background: var(--card-bg);
   border: 1px solid var(--border-color);
@@ -168,24 +168,24 @@ body {
   padding: 20px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.03);
 }
-
+ 
 legend {
   font-weight: 600;
   color: var(--primary-cyan);
   padding: 0 8px;
   font-size: 0.95rem;
 }
-
+ 
 .sub-title {
   color: var(--text-dark);
   font-size: 0.9rem;
   margin: 10px 0;
 }
-
+ 
 .form-group {
   margin-bottom: 12px;
 }
-
+ 
 .form-group label {
   display: block;
   font-size: 0.82rem;
@@ -193,7 +193,7 @@ legend {
   margin-bottom: 4px;
   font-weight: 500;
 }
-
+ 
 /* Estilos universales de entradas */
 input[type="text"],
 input[type="email"],
@@ -216,53 +216,53 @@ textarea {
   outline: none;
   transition: all 0.2s;
 }
-
+ 
 input:focus, select:focus, textarea:focus {
   border-color: var(--primary-cyan);
   background-color: #fff;
   box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.15);
 }
-
+ 
 input[type="color"] {
   height: 38px;
   padding: 2px;
   cursor: pointer;
 }
-
+ 
 input[type="range"] {
   accent-color: var(--primary-cyan);
 }
-
+ 
 textarea {
   min-height: 70px;
   resize: vertical;
 }
-
+ 
 .time-range, .form-row {
   display: flex;
   gap: 10px;
   align-items: center;
 }
-
+ 
 .checkbox-row {
   display: flex;
   align-items: center;
   gap: 8px;
   margin-bottom: 8px;
 }
-
+ 
 .checkbox-row label {
   margin-bottom: 0;
   white-space: nowrap;
 }
-
+ 
 .radio-group {
   display: flex;
   gap: 15px;
   align-items: center;
   margin-top: 5px;
 }
-
+ 
 /* Botones */
 .actions-card {
   background: #fff;
@@ -270,13 +270,13 @@ textarea {
   border-radius: 10px;
   border: 1px solid var(--border-color);
 }
-
+ 
 .btn-group {
   display: flex;
   gap: 10px;
   margin-top: 10px;
 }
-
+ 
 .btn {
   padding: 8px 16px;
   border-radius: 6px;
@@ -285,55 +285,55 @@ textarea {
   cursor: pointer;
   font-size: 0.85rem;
 }
-
+ 
 .btn-primary {
   background-color: var(--primary-cyan);
   color: #fff;
 }
-
+ 
 .btn-primary:hover {
   background-color: var(--primary-hover);
 }
-
+ 
 .btn-secondary {
   background-color: #e2e8f0;
   color: var(--text-dark);
 }
-
+ 
 .btn-outline {
   background: transparent;
   border: 1px solid var(--primary-cyan);
   color: var(--primary-cyan);
 }
-
+ 
 .btn-outline:hover {
   background-color: var(--primary-cyan);
   color: #fff;
 }
-
+ 
 /* Tablas */
 .table-container {
   overflow-x: auto;
   margin-top: 10px;
 }
-
+ 
 table {
   width: 100%;
   border-collapse: collapse;
   font-size: 0.82rem;
 }
-
+ 
 th, td {
   padding: 10px;
   border-bottom: 1px solid var(--border-color);
   text-align: left;
 }
-
+ 
 th {
   background-color: #f8fafc;
   color: var(--text-light);
 }
-
+ 
 /* Badges de estatus */
 .badge {
   padding: 3px 8px;
@@ -341,14 +341,241 @@ th {
   font-size: 0.72rem;
   font-weight: 600;
 }
-
+ 
 .badge-success { background: #dcfce7; color: #15803d; }
 .badge-warning { background: #fef9c3; color: #a16207; }
 .badge-danger { background: #fee2e2; color: #b91c1c; }
 .badge-info { background: #e0f2fe; color: #0369a1; }
-
+ 
 .section-divider {
   border: none;
   border-top: 1px solid var(--border-color);
   margin: 10px 0;
 }
+/* ==========================================
+   1. BARRA WIZARD: ARRIBA DE TODO, ANCHO COMPLETO
+   ========================================== */
+form.dashboard-grid {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+ 
+.wizard-container {
+    grid-column: 1 / -1;          /* ocupa todo el ancho del grid, no una sola columna */
+    padding: 25px 30px;
+}
+ 
+.wizard-steps {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    width: 100%;
+}
+ 
+/* Línea de fondo: va del centro del círculo 1 al centro del círculo 5
+   (60px = mitad del ancho de cada paso, 18px = mitad del círculo) */
+.wizard-progress-bar {
+    position: absolute;
+    top: 18px;
+    left: 60px;
+    right: 60px;
+    height: 4px;
+    transform: translateY(-50%);
+    background-color: var(--border-color);
+    border-radius: 2px;
+    z-index: 1;
+}
+ 
+.wizard-progress-fill {
+    height: 100%;
+    width: 0;
+    background-color: var(--primary-cyan);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+ 
+.wizard-step {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 120px;
+    text-align: center;
+}
+ 
+.step-circle {
+    --fill: 0;
+    position: relative;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text-light);
+    /* Anillo que se va llenando según el % de campos completados del apartado */
+    background: conic-gradient(var(--primary-cyan) calc(var(--fill) * 1%), var(--border-color) 0);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+ 
+.step-circle::before {
+    content: "";
+    position: absolute;
+    inset: 3px;
+    border-radius: 50%;
+    background-color: #fff;
+}
+ 
+.step-circle > * {
+    position: relative;
+    z-index: 1;
+}
+ 
+.step-check {
+    display: none;
+    font-size: 20px;
+}
+ 
+.step-label {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-light);
+    line-height: 1.2;
+    transition: color 0.3s ease;
+}
+ 
+.step-status {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--text-light);
+}
+ 
+/* Apartado en progreso */
+.wizard-step.is-partial .step-circle { color: var(--primary-hover); }
+.wizard-step.is-partial .step-label  { color: var(--text-dark); }
+.wizard-step.is-partial .step-status { color: #a16207; }
+ 
+/* Apartado completo: círculo sólido con check */
+.wizard-step.is-complete .step-circle {
+    background: var(--primary-cyan);
+    color: #fff;
+}
+.wizard-step.is-complete .step-circle::before,
+.wizard-step.is-complete .step-num { display: none; }
+.wizard-step.is-complete .step-check { display: block; }
+.wizard-step.is-complete .step-label  { color: var(--text-dark); font-weight: 600; }
+.wizard-step.is-complete .step-status { color: #15803d; }
+ 
+@media (max-width: 640px) {
+    .wizard-step { width: 64px; }
+    .wizard-progress-bar { left: 32px; right: 32px; }
+    .step-label { font-size: 0.68rem; }
+}
+ 
+/* ==========================================
+   2. SIN BORDES EN APARTADOS (fieldset / cards)
+   ========================================== */
+fieldset,
+fieldset.card,
+.card,
+.actions-card {
+    border: none !important;
+}
+ 
+legend {
+    float: left;                  /* evita que la leyenda "corte" el borde; ahora es un título normal */
+    width: 100%;
+    padding: 0;
+    margin-bottom: 12px;
+}
+ 
+legend + * {
+    clear: both;
+}
+ 
+/* ==========================================
+   3. SIN BORDES EN CAJAS DE TEXTO: SOLO SUBRAYADO
+   ========================================== */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"],
+input[type="date"],
+input[type="datetime-local"],
+input[type="time"],
+input[type="month"],
+input[type="week"],
+input[type="url"],
+input[type="color"],
+input:not([type]),
+select,
+textarea {
+    border: none !important;
+    border-bottom: 2px solid var(--border-color) !important;  /* subrayado en reposo */
+    border-radius: 0 !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    outline: none !important;
+    transition: border-color 0.2s ease-in-out;
+}
+ 
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="password"]:focus,
+input[type="date"]:focus,
+input[type="datetime-local"]:focus,
+input[type="time"]:focus,
+input[type="month"]:focus,
+input[type="week"]:focus,
+input[type="url"]:focus,
+input:not([type]):focus,
+select:focus,
+textarea:focus {
+    border-bottom: 2px solid var(--primary-cyan) !important;  /* subrayado cian al seleccionar */
+    background-color: transparent !important;
+}
+ 
+input[type="text"]:hover,
+input[type="email"]:hover,
+input[type="tel"]:hover,
+input[type="password"]:hover,
+input[type="date"]:hover,
+input[type="datetime-local"]:hover,
+input[type="time"]:hover,
+input[type="month"]:hover,
+input[type="week"]:hover,
+input[type="url"]:hover,
+input:not([type]):hover,
+select:hover,
+textarea:hover {
+    border-bottom-color: var(--primary-hover) !important;
+}
+ 
+/* ==========================================
+   4. AVISO "POR FAVOR, LLENA ESTE APARTADO"
+   ========================================== */
+.campo-error {
+    display: block;
+    margin-top: 4px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #b91c1c;
+}
+ 
+.campo-error[hidden] {
+    display: none;
+}
+ 
+/* Subrayado rojo en la casilla con aviso (también mientras tiene el foco) */
+form.dashboard-grid input.campo-invalido,
+form.dashboard-grid select.campo-invalido,
+form.dashboard-grid textarea.campo-invalido {
+    border-bottom: 2px solid #dc2626 !important;
+}
+ 
