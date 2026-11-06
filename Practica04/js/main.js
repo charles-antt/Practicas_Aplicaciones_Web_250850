@@ -1,283 +1,289 @@
+
 (function () {
 // Todo el archivo va dentro de una función para que sus variables no choquen con las de otros .js del proyecto
  
-// Practica 01: primer mensaje en la consola del navegador 
+// Practica 01: primer mensaje en la consola del navegador
 console.log("Hola desde JavaScript");
  
-// Practica 02: Calcular y mostrar la mayoría de edad sin enviar el formulario.
-const fechaNacimiento = document.getElementById("fechaNacimiento");
-const resultadoEdad = document.getElementById("resultadoEdad");
- 
-// Se ejecuta al seleccionar o modificar una fecha 
-fechaNacimiento.addEventListener("change", function() {
-    // Limpiamos los colores y estados de la validación anterior  
-    resultadoEdad.classList.remove(
-        "edad-estado--mayor",
-        "edad-estado--menor",
-        "edad-estado--error"
-    );
-    resultadoEdad.style.color = ""; // Limpia el color aplicado previamente
- 
-    // Si el usuario borra la fecha, se regresa al estado inicial 
-    if (fechaNacimiento.value === "") {
-        resultadoEdad.textContent = "Selecciona una fecha para calcular tu edad"; 
-        resultadoEdad.style.color = "";
-        return;
-    }
- 
-    // Un input devuelve su valor con formato AAAA-MM-DD
-    const [anio, mes, dia] = fechaNacimiento.value.split("-").map(Number);
-    const nacimiento = new Date(anio, mes - 1, dia); // Meses: 0 = enero
-    const hoy = new Date();
-    hoy.setHours(0, 0, 0, 0); // Comparar fechas, no horas
- 
-    // No es posible calcular una edad con una fecha futura (FECHA ERRÓNEA -> ROJO)
-    if (nacimiento > hoy) {
-        resultadoEdad.textContent = "Error: no se puede calcular la edad con los datos elegidos. La fecha es futura.";
-        resultadoEdad.classList.add("edad-estado--error");
-        resultadoEdad.style.color = "red";
-        return;
-    }
- 
-    // Cálculo de la edad exacta
-    let edad = hoy.getFullYear() - nacimiento.getFullYear();
-    const diferenciaMeses = hoy.getMonth() - nacimiento.getMonth();
- 
-    if (diferenciaMeses < 0 || (diferenciaMeses === 0 && hoy.getDate() < nacimiento.getDate())) {
-        edad--;
-    }
- 
-    // Evaluación de la mayoría de edad (18 años)
-    if (edad >= 18) {
-        resultadoEdad.textContent = `Tienes ${edad} años. Eres mayor de edad.`;
-        resultadoEdad.classList.add("edad-estado--mayor");
-        resultadoEdad.style.color = "green"; // MAYOR DE EDAD -> VERDE
-    } else {
-        resultadoEdad.textContent = `Tienes ${edad} años. Eres menor de edad.`;
-        resultadoEdad.classList.add("edad-estado--menor");
-        resultadoEdad.style.color = "red"; // MENOR DE EDAD -> ROJO
-    }
-});
- 
-// Wizard Stepper: cada círculo se llena según los campos completados de su apartado
 document.addEventListener("DOMContentLoaded", function () {
-    const form = document.querySelector("form.dashboard-grid");
-    const wizardFill = document.getElementById("wizardProgress");
-    const pasos = document.querySelectorAll(".wizard-step");
-    if (!form || !wizardFill || pasos.length === 0) return;
- 
-    const $ = (id) => document.getElementById(id);
-    const terminos = form.querySelector('.actions-card input[type="checkbox"]');
- 
-    // Campos que cuentan para considerar "lleno" cada apartado (en el orden de los pasos)
-    // Cada función devuelve [campos llenos, campos totales]
-    const lleno = (el) => !!el && el.value.trim() !== "" && el.checkValidity();
-    const contar = (ids) => [ids.filter(id => lleno($(id))).length, ids.length];
- 
-    const reglas = [
-        // 1. Datos Personales
-        () => contar(["nombre", "apPaterno", "fechaNacimiento"]),
-        // 2. Datos de Acceso (la confirmación debe coincidir con la contraseña)
-        () => {
-            const ok = ["usuario", "contrasena"].filter(id => lleno($(id))).length;
-            const coincide = lleno($("confirmarContrasena")) &&
-                $("confirmarContrasena").value === $("contrasena").value;
-            return [ok + (coincide ? 1 : 0), 3];
-        },
-        // 3. Contacto (correo y teléfono; el horario y las redes son opcionales)
-        () => contar(["correo", "telefono"]),
-        // 4. Ubicación
-        () => contar(["direccion", "pais", "estado", "ciudad", "codigoPostal"]),
-        // 5. Confirmación: aceptar términos
-        () => [terminos && terminos.checked ? 1 : 0, 1]
-    ];
- 
-    // Preparar los círculos (número + check) y la etiqueta de estado de cada paso
-    pasos.forEach((paso, i) => {
-        paso.classList.remove("active");
-        const circulo = paso.querySelector(".step-circle");
-        circulo.innerHTML =
-            `<span class="step-num">${i + 1}</span>` +
-            `<span class="material-symbols-outlined step-check">check</span>`;
-        const estado = document.createElement("span");
-        estado.className = "step-status";
-        paso.appendChild(estado);
-    });
- 
-    function actualizarWizard() {
-        const fracciones = [];
- 
-        pasos.forEach((paso, i) => {
-            const [llenos, total] = reglas[i]();
-            const fraccion = total === 0 ? 0 : llenos / total;
-            fracciones.push(fraccion);
- 
-            const completo = llenos === total;
-            const parcial = llenos > 0 && !completo;
- 
-            paso.classList.toggle("is-complete", completo);
-            paso.classList.toggle("is-partial", parcial);
-            paso.querySelector(".step-circle").style.setProperty("--fill", Math.round(fraccion * 100));
- 
-            paso.querySelector(".step-status").textContent =
-                completo ? "Completo" :
-                parcial  ? `En progreso (${llenos}/${total})` :
-                           "Pendiente";
-        });
- 
-        // La línea avanza paso a paso: pasos completos seguidos + avance parcial del siguiente
-        let k = 0;
-        while (k < pasos.length && fracciones[k] === 1) k++;
-        const posicion = Math.max(0, (k - 1) + (k < pasos.length ? fracciones[k] : 0));
-        wizardFill.style.width = (posicion / (pasos.length - 1)) * 100 + "%";
-    }
- 
-    form.addEventListener("input", actualizarWizard);
-    form.addEventListener("change", actualizarWizard);
-    form.addEventListener("reset", () => setTimeout(actualizarWizard, 0)); // tras limpiar el formulario
- 
-    actualizarWizard();
-});
- 
-// Practica: Control de la barra de progreso dinamica conforme se llena el formulario
-document.addEventListener("DOMContentLoaded", function () {
-    const form = document.querySelector("form.dashboard-grid");
-    const progressBar = document.getElementById("progressBar");
-    const stepperText = document.getElementById("stepper-text");
- 
-    if (!form || !progressBar || !stepperText) return;
- 
-    // Seleccionamos los inputs activos en el primer formulario
-    const inputs = form.querySelectorAll("input:not([type='hidden']):not([type='submit']):not([type='reset']), select, textarea");
- 
-    function actualizarProgreso() {
-        let llenados = 0;
-        let total = inputs.length;
- 
-        inputs.forEach(input => {
-            if (input.type === "checkbox" || input.type === "radio") {
-                if (input.checked) llenados++;
-            } else if (input.value.trim() !== "") {
-                llenados++;
-            }
-        });
- 
-        const porcentaje = Math.round((llenados / total) * 100);
-        progressBar.style.width = porcentaje + "%";
-        stepperText.textContent = `Progreso del formulario: ${porcentaje}% (${llenados} de ${total} campos completados)`;
-    }
- 
-    // Escuchar eventos en cada campo del formulario
-    inputs.forEach(input => {
-        input.addEventListener("input", actualizarProgreso);
-        input.addEventListener("change", actualizarProgreso);
-    });
- 
-    // Inicializar cálculo al cargar
-    actualizarProgreso();
-});
- 
- 
-// Avisos de validación: "Por favor, llena este apartado" debajo de cada casilla
-document.addEventListener("DOMContentLoaded", function () {
-    const form = document.querySelector("form.dashboard-grid");
+    const form = document.getElementById("formRegistro");
     if (!form) return;
  
-    form.noValidate = true; // se desactiva el globo nativo del navegador; usamos nuestros avisos
+    const $ = (id) => document.getElementById(id);
+    const MSG_OBLIGATORIO = "Este campo es obligatorio.";
+    const MSG_BANNER = "Completa los campos obligatorios antes de continuar.";
  
-    const MENSAJE = "Por favor, llena este apartado";
+    /* =====================================================
+       Practica 02: calcular y mostrar la mayoría de edad
+       ===================================================== */
+    const fechaNacimiento = $("fechaNacimiento");
+    const resultadoEdad = $("resultadoEdad");
+    const TEXTO_EDAD_INICIAL = "Selecciona una fecha para calcular tu edad.";
  
-    // Casillas que deben llenarse (las mismas que usa la barra wizard).
-    // Para exigir otra, agrega su id a esta lista.
-    const idsObligatorios = [
-        "nombre", "apPaterno", "fechaNacimiento",
-        "usuario", "contrasena", "confirmarContrasena",
-        "correo", "telefono",
-        "direccion", "pais", "estado", "ciudad", "codigoPostal"
-    ];
-    const campos = idsObligatorios.map(id => document.getElementById(id)).filter(Boolean);
-    const terminos = form.querySelector('.actions-card input[type="checkbox"]');
-    const avisos = new Map();     // campo -> elemento <small> con el mensaje
-    const tocados = new Set();    // campos que el usuario ya visitó
- 
-    function crearAviso(el, despuesDe) {
-        const aviso = document.createElement("small");
-        aviso.className = "campo-error";
-        aviso.setAttribute("role", "alert");
-        aviso.hidden = true;
-        despuesDe.insertAdjacentElement("afterend", aviso);
-        avisos.set(el, aviso);
-        return aviso;
+    function limpiarEdad() {
+        resultadoEdad.classList.remove("edad-estado--mayor", "edad-estado--menor", "edad-estado--error");
+        resultadoEdad.textContent = TEXTO_EDAD_INICIAL;
     }
  
+    fechaNacimiento.addEventListener("change", function () {
+        limpiarEdad();
+        if (fechaNacimiento.value === "") return; // sin fecha: estado inicial
+ 
+        // Un input date devuelve AAAA-MM-DD
+        const [anio, mes, dia] = fechaNacimiento.value.split("-").map(Number);
+        const nacimiento = new Date(anio, mes - 1, dia); // Meses: 0 = enero
+        const hoy = new Date();
+        hoy.setHours(0, 0, 0, 0); // se comparan fechas, no horas
+ 
+        if (nacimiento > hoy) {
+            resultadoEdad.textContent = "Error: no se puede calcular la edad con los datos elegidos. La fecha es futura.";
+            resultadoEdad.classList.add("edad-estado--error");
+            return;
+        }
+ 
+        let edad = hoy.getFullYear() - nacimiento.getFullYear();
+        const diferenciaMeses = hoy.getMonth() - nacimiento.getMonth();
+        if (diferenciaMeses < 0 || (diferenciaMeses === 0 && hoy.getDate() < nacimiento.getDate())) {
+            edad--;
+        }
+ 
+        const textoEdad = `Tienes ${edad} ${edad === 1 ? "año" : "años"}.`;
+        if (edad >= 18) {
+            resultadoEdad.textContent = `Eres mayor de edad. ${textoEdad}`;
+            resultadoEdad.classList.add("edad-estado--mayor");   // verde
+        } else {
+            resultadoEdad.textContent = `Eres menor de edad. ${textoEdad}`;
+            resultadoEdad.classList.add("edad-estado--menor");   // rojo
+        }
+    });
+ 
+    /* =====================================================
+       Vista previa del QR de WhatsApp
+       ===================================================== */
+    const qrInput = $("whatsAppQR");
+    const qrCheck = $("socialNetworks3");
+    const qrVacio = $("qrEmpty");
+    const qrImagen = $("qrImage");
+    const qrError = $("qrError");
+    const qrNombre = $("qrFileName");
+    const qrQuitar = $("qrRemove");
+    const TEXTO_QR_INICIAL = "Solo vista previa local; no se envía al servidor.";
+    let qrUrl = null;
+ 
+    function limpiarQR() {
+        if (qrUrl) { URL.revokeObjectURL(qrUrl); qrUrl = null; }
+        qrImagen.removeAttribute("src");
+        qrImagen.hidden = true;
+        qrVacio.hidden = false;
+        qrNombre.textContent = TEXTO_QR_INICIAL;
+        qrQuitar.hidden = true;
+        qrError.hidden = true;
+        qrError.textContent = "";
+    }
+ 
+    qrInput.addEventListener("change", function () {
+        const archivo = qrInput.files[0];
+        limpiarQR();
+        if (!archivo) return;
+ 
+        if (!archivo.type.startsWith("image/")) {
+            qrError.textContent = "El archivo seleccionado no es una imagen. Elige un PNG, JPG o WEBP.";
+            qrError.hidden = false;
+            qrVacio.hidden = true;
+            qrInput.value = "";
+            return;
+        }
+ 
+        qrUrl = URL.createObjectURL(archivo);
+        qrImagen.src = qrUrl;
+        qrImagen.hidden = false;
+        qrVacio.hidden = true;
+        qrNombre.textContent = "Archivo: " + archivo.name;
+        qrQuitar.hidden = false;
+        qrCheck.checked = true; // al adjuntar el QR se marca WhatsApp automáticamente
+    });
+ 
+    qrQuitar.addEventListener("click", function () {
+        qrInput.value = "";
+        limpiarQR();
+        qrCheck.checked = false;
+    });
+ 
+    /* =====================================================
+       Wizard por pasos con validación
+       ===================================================== */
+    const TOTAL = 4;
+    const tarjeta = $("registroWizard");
+    const paneles = [...form.querySelectorAll(".wizard-panel")];
+    const items = [...document.querySelectorAll(".stepper-item")];
+    const relleno = $("wizardProgress");
+    const banner = $("bannerFormulario");
+    const btnAnterior = $("btnAnterior");
+    const btnSiguienteTexto = $("btnSiguienteTexto");
+    const btnSiguienteIcono = $("btnSiguienteIcono");
+    let pasoActual = 1;
+ 
+    function mostrarBanner(texto, tipo) {
+        banner.textContent = texto;
+        banner.className = "form-banner is-" + tipo; // is-warning | is-success
+        banner.hidden = false;
+    }
+ 
+    function ocultarBanner() {
+        banner.hidden = true;
+        banner.textContent = "";
+    }
+ 
+    // --- Validación de campos ---
     function mensajeDe(el) {
-        if (el === terminos) return el.checked ? "" : "Por favor, acepta los términos y condiciones";
-        if (el.value.trim() === "") return MENSAJE;
-        if (el.type === "email" && !el.checkValidity()) return "Ingresa un correo electrónico válido";
-        if (el.id === "confirmarContrasena" && el.value !== document.getElementById("contrasena").value) {
-            return "Las contraseñas no coinciden";
+        if (el.type === "checkbox") {
+            return el.required && !el.checked ? (el.dataset.mensaje || MSG_OBLIGATORIO) : "";
+        }
+        const valor = el.value.trim();
+        if (valor === "") return el.required ? MSG_OBLIGATORIO : "";
+        if (el.validity.typeMismatch) {
+            return el.type === "email" ? "Ingresa un correo electrónico válido."
+                                       : "Ingresa una URL válida (https://...).";
+        }
+        if (el.minLength > 0 && valor.length < el.minLength) {
+            return `Utiliza al menos ${el.minLength} caracteres.`;
         }
         return "";
     }
  
-    // Muestra u oculta el aviso del campo. Devuelve true si el campo es inválido.
-    function validar(el) {
+    // Muestra u oculta el error de un campo. Devuelve true si el campo es válido.
+    function validarCampo(el) {
+        const contenedor = el.closest(".field");
+        if (!contenedor) return true; // casillas sueltas (redes sociales) no se validan
         const mensaje = mensajeDe(el);
-        const aviso = avisos.get(el);
-        aviso.textContent = mensaje;
-        aviso.hidden = mensaje === "";
-        el.classList.toggle("campo-invalido", mensaje !== "");
+        const errorEl = $("error-" + el.id);
+        contenedor.classList.toggle("is-invalid", mensaje !== "");
         el.setAttribute("aria-invalid", mensaje !== "" ? "true" : "false");
-        return mensaje !== "";
-    }
- 
-    campos.forEach(el => {
-        crearAviso(el, el);
-        // Aparece al salir de la casilla vacía; luego se actualiza mientras se escribe
-        el.addEventListener("blur", () => { tocados.add(el); validar(el); });
-        const revisar = () => { if (tocados.has(el)) validar(el); };
-        el.addEventListener("input", revisar);
-        el.addEventListener("change", () => { tocados.add(el); validar(el); });
-    });
- 
-    // Si cambia la contraseña, se vuelve a comparar la confirmación
-    const contrasena = document.getElementById("contrasena");
-    const confirmar = document.getElementById("confirmarContrasena");
-    if (contrasena && confirmar) {
-        contrasena.addEventListener("input", () => { if (tocados.has(confirmar)) validar(confirmar); });
-    }
- 
-    if (terminos) {
-        crearAviso(terminos, terminos.closest("label") || terminos);
-        terminos.addEventListener("change", () => { tocados.add(terminos); validar(terminos); });
-    }
- 
-    // Al enviar: se revisan todas las casillas y se detiene el envío si falta alguna
-    form.addEventListener("submit", function (e) {
-        let primero = null;
-        const todos = terminos ? [...campos, terminos] : campos;
-        todos.forEach(el => {
-            tocados.add(el);
-            if (validar(el) && !primero) primero = el;
-        });
-        if (primero) {
-            e.preventDefault();
-            primero.scrollIntoView({ behavior: "smooth", block: "center" });
-            primero.focus({ preventScroll: true });
+        if (errorEl) {
+            errorEl.textContent = mensaje;
+            errorEl.hidden = mensaje === "";
         }
+        return mensaje === "";
+    }
+ 
+    function camposDe(n) {
+        return [...paneles[n - 1].querySelectorAll(
+            "input:not([type='file']):not([type='hidden']), select, textarea"
+        )];
+    }
+ 
+    // Valida todo un paso. Devuelve el primer campo inválido (o null si todo está bien).
+    function validarPaso(n) {
+        let primero = null;
+        camposDe(n).forEach(el => {
+            if (!validarCampo(el) && !primero) primero = el;
+        });
+        return primero;
+    }
+ 
+    // Mientras se escribe solo se quita el error cuando el valor ya es correcto
+    function reevaluar(e) {
+        const contenedor = e.target.closest(".field");
+        if (contenedor && contenedor.classList.contains("is-invalid")) validarCampo(e.target);
+    }
+    form.addEventListener("input", reevaluar);
+    form.addEventListener("change", reevaluar);
+ 
+    // Al salir de una casilla se revisa si tiene contenido (p. ej. un correo mal escrito)
+    form.addEventListener("focusout", function (e) {
+        const el = e.target;
+        const contenedor = el.closest && el.closest(".field");
+        if (!contenedor || el.type === "checkbox") return;
+        if (el.value.trim() !== "" || contenedor.classList.contains("is-invalid")) validarCampo(el);
     });
  
-    // Al limpiar el formulario se quitan todos los avisos
-    form.addEventListener("reset", function () {
-        tocados.clear();
-        avisos.forEach((aviso, el) => {
-            aviso.hidden = true;
-            aviso.textContent = "";
-            el.classList.remove("campo-invalido");
-            el.removeAttribute("aria-invalid");
+    // --- Navegación ---
+    function mostrarPaso(n, desplazar = true) {
+        pasoActual = n;
+ 
+        paneles.forEach((p, i) => { p.hidden = i !== n - 1; });
+ 
+        items.forEach((li, i) => {
+            const num = i + 1;
+            li.classList.toggle("is-active", num === n);
+            li.classList.toggle("is-done", num < n);
+            li.querySelector(".step-icon").textContent = num < n ? "check" : li.dataset.icon;
+            const btn = li.querySelector("button");
+            if (num === n) btn.setAttribute("aria-current", "step");
+            else btn.removeAttribute("aria-current");
         });
+ 
+        relleno.style.width = ((n - 1) / (TOTAL - 1)) * 100 + "%";
+ 
+        btnAnterior.disabled = n === 1;
+        const ultimo = n === TOTAL;
+        btnSiguienteTexto.textContent = ultimo ? "Enviar solicitud" : "Siguiente";
+        btnSiguienteIcono.textContent = ultimo ? "check" : "arrow_forward";
+ 
+        // El aviso siempre aparece debajo del encabezado del paso visible
+        ocultarBanner();
+        paneles[n - 1].querySelector(".panel-head").after(banner);
+ 
+        if (desplazar) tarjeta.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+ 
+    // Retroceder es libre; avanzar exige que los pasos anteriores sean válidos
+    function irAPaso(destino) {
+        if (destino <= pasoActual) { mostrarPaso(destino); return; }
+        for (let n = pasoActual; n < destino; n++) {
+            const invalido = validarPaso(n);
+            if (invalido) {
+                if (n !== pasoActual) mostrarPaso(n);
+                mostrarBanner(MSG_BANNER, "warning");
+                invalido.focus();
+                return;
+            }
+        }
+        mostrarPaso(destino);
+    }
+ 
+    btnAnterior.addEventListener("click", () => mostrarPaso(pasoActual - 1));
+    items.forEach(li => li.addEventListener("click", () => irAPaso(Number(li.dataset.step))));
+ 
+    // "Siguiente" y la tecla Enter pasan por aquí; en el último paso se "envía"
+    form.addEventListener("submit", function (e) {
+        e.preventDefault();
+ 
+        if (pasoActual < TOTAL) {
+            irAPaso(pasoActual + 1);
+            return;
+        }
+ 
+        // Último paso: se revisan todos los pasos antes de dar por buena la solicitud
+        for (let n = 1; n <= TOTAL; n++) {
+            const invalido = validarPaso(n);
+            if (invalido) {
+                if (n !== pasoActual) mostrarPaso(n);
+                mostrarBanner(MSG_BANNER, "warning");
+                invalido.focus();
+                return;
+            }
+        }
+        mostrarBanner("¡Registro revisado! Envío simulado: los datos no se almacenan.", "success");
+        banner.scrollIntoView({ behavior: "smooth", block: "center" });
     });
+ 
+    // "Limpiar": borra todo el formulario y regresa al paso 1
+    form.addEventListener("reset", function () {
+        setTimeout(function () {
+            form.querySelectorAll(".field.is-invalid").forEach(c => c.classList.remove("is-invalid"));
+            form.querySelectorAll(".field-error").forEach(p => { p.hidden = true; p.textContent = ""; });
+            form.querySelectorAll("[aria-invalid]").forEach(el => el.removeAttribute("aria-invalid"));
+            limpiarEdad();
+            limpiarQR();
+            mostrarPaso(1);
+        }, 0); // después de que el navegador vacíe los campos
+    });
+ 
+    // Estado inicial
+    limpiarEdad();
+    limpiarQR();
+    mostrarPaso(1, false);
 });
  
 })();
- 
