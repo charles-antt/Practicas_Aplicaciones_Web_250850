@@ -125,7 +125,7 @@
                             <label for="nombre">Nombre <span class="req" aria-hidden="true">*</span></label>
                             <div class="input-wrap">
                                 <span class="material-symbols-outlined" aria-hidden="true">person</span>
-                                <input type="text" id="nombre" name="nombre" placeholder="Carlos Eduardo" required autocomplete="given-name">
+                                <input type="text" id="nombre" name="nombre" placeholder="Marco Antonio" required autocomplete="given-name">
                             </div>
                             <p class="field-error" id="error-nombre" hidden></p>
                         </div>
@@ -133,7 +133,7 @@
                             <label for="apPaterno">Apellido paterno <span class="req" aria-hidden="true">*</span></label>
                             <div class="input-wrap">
                                 <span class="material-symbols-outlined" aria-hidden="true">person</span>
-                                <input type="text" id="apPaterno" name="apPaterno" placeholder="Antonio" required autocomplete="family-name">
+                                <input type="text" id="apPaterno" name="apPaterno" placeholder="Ramírez" required autocomplete="family-name">
                             </div>
                             <p class="field-error" id="error-apPaterno" hidden></p>
                         </div>
@@ -141,7 +141,7 @@
                             <label for="apMaterno">Apellido materno</label>
                             <div class="input-wrap">
                                 <span class="material-symbols-outlined" aria-hidden="true">person</span>
-                                <input type="text" id="apMaterno" name="apMaterno" placeholder="Alvarez">
+                                <input type="text" id="apMaterno" name="apMaterno" placeholder="Hernández">
                             </div>
                             <p class="field-error" id="error-apMaterno" hidden></p>
                         </div>
@@ -258,7 +258,7 @@
                             <div class="social-input">
                                 <div class="input-wrap">
                                     <span class="material-symbols-outlined" aria-hidden="true">link</span>
-                                    <input type="url" id="urlFacebook" name="urlFacebook" placeholder="https://facebook.com/usuario">
+                                    <input type="url" id="urlFacebook" name="urlFacebook" disabled placeholder="https://facebook.com/usuario">
                                 </div>
                                 <p class="field-error" id="error-urlFacebook" hidden></p>
                             </div>
@@ -268,7 +268,7 @@
                             <div class="social-input">
                                 <div class="input-wrap">
                                     <span class="material-symbols-outlined" aria-hidden="true">link</span>
-                                    <input type="url" id="urlLinkedIn" name="urlLinkedIn" placeholder="https://linkedin.com/in/usuario">
+                                    <input type="url" id="urlLinkedIn" name="urlLinkedIn" disabled placeholder="https://linkedin.com/in/usuario">
                                 </div>
                                 <p class="field-error" id="error-urlLinkedIn" hidden></p>
                             </div>
@@ -277,7 +277,7 @@
                             <label class="check-label" for="socialNetworks3"><input type="checkbox" id="socialNetworks3"> WhatsApp</label>
                             <div class="social-input">
                                 <label class="file-label" for="whatsAppQR">Adjuntar QR</label>
-                                <input type="file" id="whatsAppQR" name="whatsAppQR" accept="image/*">
+                                <input type="file" id="whatsAppQR" name="whatsAppQR" disabled accept="image/*">
                             </div>
                         </div>
                     </div>
@@ -327,6 +327,12 @@
                                 <input type="password" id="contrasena" name="contrasena" placeholder="••••••••" required autocomplete="new-password">
                             </div>
                             <p class="field-error" id="error-contrasena" hidden></p>
+                            <ul class="pass-rules" id="reglasContrasena" aria-live="polite">
+                                <li data-regla="longitud">Al menos 8 caracteres</li>
+                                <li data-regla="mayuscula">Una letra mayúscula</li>
+                                <li data-regla="numero">Un número</li>
+                                <li data-regla="especial">Un signo especial (! @ # $ % &amp; …)</li>
+                            </ul>
                         </div>
                         <div class="field">
                             <label for="confirmarContrasena">Confirmar contraseña <span class="req" aria-hidden="true">*</span></label>
@@ -337,7 +343,6 @@
                             <p class="field-error" id="error-confirmarContrasena" hidden></p>
                         </div>
                 </div>
-                <p class="panel-note">Las validaciones nativas de envío están desactivadas con novalidate. La comparación de contraseñas se implementará en otra clase.</p>
             </section>
  
             <section class="wizard-panel" id="panel-4" data-step="4" aria-labelledby="titulo-paso-4" hidden>

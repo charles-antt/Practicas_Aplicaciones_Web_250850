@@ -1,3 +1,4 @@
+
 :root {
   --bg-sidebar: #050c1a;
   --bg-sidebar-active: #0093ad;
@@ -787,3 +788,40 @@ input[type="file"] { max-width: 100%; font-size: 0.8rem; }
   .panel-head h3 { font-size: 1.3rem; }
   .social-row { grid-template-columns: 1fr; gap: 4px; }
 }
+ 
+ 
+/* ==========================================================
+   Requisitos de contraseña y campos deshabilitados
+   ========================================================== */
+.pass-rules {
+  list-style: none;
+  margin-top: 6px;
+  display: grid;
+  gap: 2px;
+}
+ 
+.pass-rules li {
+  font-size: 0.74rem;
+  color: var(--text-light);
+  transition: color 0.2s;
+}
+ 
+.pass-rules li::before {
+  content: "○";
+  display: inline-block;
+  width: 16px;
+}
+ 
+.pass-rules li.is-ok { color: #15803d; }
+.pass-rules li.is-ok::before { content: "✓"; font-weight: 700; }
+ 
+input:disabled,
+select:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+ 
+input:disabled:hover { border-bottom-color: var(--border-color); }
+ 
+.social-row:has(input[type="checkbox"]:not(:checked)) .file-label { opacity: 0.5; }
+ 

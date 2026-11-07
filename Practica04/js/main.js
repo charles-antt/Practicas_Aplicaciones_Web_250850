@@ -106,7 +106,6 @@ document.addEventListener("DOMContentLoaded", function () {
     qrQuitar.addEventListener("click", function () {
         qrInput.value = "";
         limpiarQR();
-        qrCheck.checked = false;
     });
  
     /* =====================================================
@@ -134,6 +133,41 @@ document.addEventListener("DOMContentLoaded", function () {
         banner.textContent = "";
     }
  
+    // --- Reglas de la contraseña: 8+ caracteres, mayúscula, número y signo especial ---
+    const MSG_CLAVE = "La contraseña debe tener al menos 8 caracteres, una mayúscula, un número y un signo especial.";
+ 
+    function reglasClave(valor) {
+        return {
+            longitud: valor.length >= 8,
+            mayuscula: /[A-ZÁÉÍÓÚÑ]/.test(valor),
+            numero: /\d/.test(valor),
+            especial: /[^A-Za-z0-9ÁÉÍÓÚÑáéíóúñ\s]/.test(valor)
+        };
+    }
+ 
+    const contrasena = $("contrasena");
+    const confirmarContrasena = $("confirmarContrasena");
+    const listaReglas = $("reglasContrasena");
+ 
+    // Marca con ✓ cada requisito que la contraseña ya cumple
+    function actualizarReglasClave() {
+        const estado = reglasClave(contrasena.value);
+        listaReglas.querySelectorAll("li").forEach(li => {
+            li.classList.toggle("is-ok", estado[li.dataset.regla]);
+        });
+    }
+ 
+    contrasena.addEventListener("input", function () {
+        actualizarReglasClave();
+        // Si ya se escribió la confirmación, se vuelve a comparar con la nueva contraseña
+        if (confirmarContrasena.value !== "") validarCampo(confirmarContrasena);
+    });
+ 
+    // La confirmación se compara mientras se escribe
+    confirmarContrasena.addEventListener("input", function () {
+        if (confirmarContrasena.value !== "") validarCampo(confirmarContrasena);
+    });
+ 
     // --- Validación de campos ---
     function mensajeDe(el) {
         if (el.type === "checkbox") {
@@ -141,6 +175,12 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         const valor = el.value.trim();
         if (valor === "") return el.required ? MSG_OBLIGATORIO : "";
+        if (el.id === "contrasena") {
+            return Object.values(reglasClave(el.value)).every(Boolean) ? "" : MSG_CLAVE;
+        }
+        if (el.id === "confirmarContrasena") {
+            return el.value === $("contrasena").value ? "" : "Las contraseñas no coinciden.";
+        }
         if (el.validity.typeMismatch) {
             return el.type === "email" ? "Ingresa un correo electrónico válido."
                                        : "Ingresa una URL válida (https://...).";
@@ -196,6 +236,34 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!contenedor || el.type === "checkbox") return;
         if (el.value.trim() !== "" || contenedor.classList.contains("is-invalid")) validarCampo(el);
     });
+ 
+    // --- Redes sociales: el campo solo se habilita si su casilla está marcada ---
+    const redes = [
+        { check: $("socialNetworks1"), campo: $("urlFacebook") },
+        { check: $("socialNetworks2"), campo: $("urlLinkedIn") },
+        { check: $("socialNetworks3"), campo: qrInput }          // WhatsApp: imagen del QR
+    ];
+ 
+    function sincronizarRed(red, enfocar) {
+        const { check, campo } = red;
+        campo.disabled = !check.checked;
+ 
+        if (!check.checked) {
+            // Al desmarcar se borra lo capturado y se quita cualquier error
+            if (campo === qrInput) {
+                qrInput.value = "";
+                limpiarQR();
+            } else {
+                campo.value = "";
+                validarCampo(campo);
+            }
+        } else if (enfocar && campo !== qrInput) {
+            campo.focus();
+        }
+    }
+ 
+    redes.forEach(red => red.check.addEventListener("change", () => sincronizarRed(red, true)));
+    const sincronizarRedes = () => redes.forEach(red => sincronizarRed(red, false));
  
     // --- Navegación ---
     function mostrarPaso(n, desplazar = true) {
@@ -276,6 +344,8 @@ document.addEventListener("DOMContentLoaded", function () {
             form.querySelectorAll("[aria-invalid]").forEach(el => el.removeAttribute("aria-invalid"));
             limpiarEdad();
             limpiarQR();
+            sincronizarRedes();
+            actualizarReglasClave();
             mostrarPaso(1);
         }, 0); // después de que el navegador vacíe los campos
     });
@@ -283,6 +353,8 @@ document.addEventListener("DOMContentLoaded", function () {
     // Estado inicial
     limpiarEdad();
     limpiarQR();
+    sincronizarRedes();
+    actualizarReglasClave();
     mostrarPaso(1, false);
 });
  
