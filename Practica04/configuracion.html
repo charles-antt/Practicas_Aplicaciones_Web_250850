@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MecaGest: Configuración - 250850</title>
+    <link rel="icon" type="image/x-icon" href="../Practica04/images/logotipo.png">
+    <link rel="stylesheet" href="/Practica04/css/style.css">
+    <!-- Iconos de Google Material Symbols -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+</head>
+<body>
+
+    <div class="app-layout">
+        <!-- Menú Lateral Izquierdo (Sidebar) -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <img src="/Practica04/images/logotipo.png" alt="Logo SGTM" class="logo-img">
+            </div>
+
+            <nav class="sidebar-menu" aria-label="Menú principal">
+                <a href="#" class="menu-item"><span class="material-symbols-outlined">dashboard</span> Dashboard</a>
+                <a href="#" class="menu-item"><span class="material-symbols-outlined">group</span> Clientes</a>
+                <a href="#" class="menu-item"><span class="material-symbols-outlined">directions_car</span> Vehículos</a>
+                <a href="#" class="menu-item"><span class="material-symbols-outlined">assignment</span> Órdenes de Trabajo</a>
+                <a href="registroUsuarios.html" class="menu-item"><span class="material-symbols-outlined">person_add</span> Registro de usuarios</a>
+                <a href="proximasCitas.html" class="menu-item"><span class="material-symbols-outlined">event_available</span> Próximas citas</a>
+                <a href="salidasAlmacen.html" class="menu-item"><span class="material-symbols-outlined">build</span> Salidas de almacén</a>
+                <a href="#" class="menu-item"><span class="material-symbols-outlined">payments</span> Facturación y Pagos</a>
+                <a href="#" class="menu-item"><span class="material-symbols-outlined">analytics</span> Reportes</a>
+                <a href="configuracion.html" class="menu-item active" aria-current="page"><span class="material-symbols-outlined">settings</span> Configuración</a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <span class="material-symbols-outlined">help</span>
+                <div>
+                    <p class="footer-title">¿Necesitas ayuda?</p>
+                    <p class="footer-sub">Soporte técnico</p>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Área Principal de Contenido -->
+        <div class="main-wrapper">
+            <header class="top-navbar">
+                <div class="header-title">
+                    <span class="material-symbols-outlined menu-toggle">menu</span>
+                    <div>
+                        <h1>MecaGest</h1>
+                        <p class="breadcrumb">Configuración — Personalización de interfaz y cuenta</p>
+                    </div>
+                </div>
+                <div class="header-user">
+                    <span class="material-symbols-outlined icon-btn">notifications</span>
+                    <span class="material-symbols-outlined icon-btn">help</span>
+                    <div class="user-profile">
+                        <span class="material-symbols-outlined">account_circle</span>
+                        <span>Administrador</span>
+                    </div>
+                </div>
+            </header>
+
+            <main class="content-area">
+                <header class="section-heading">
+                    <span class="section-index">01</span>
+                    <div class="section-text">
+                        <p class="eyebrow">Módulos de práctica · MecaGest</p>
+                        <h2>Configuración</h2>
+                        <p class="section-desc">Personalización de interfaz y cuenta. Los cambios permanentes se implementarán con PHP y MySQL.</p>
+                    </div>
+                </header>
+
+                <div class="module-grid">
+                <section class="module-card " aria-labelledby="mod-06">
+                    <header class="module-head">
+                        <span class="module-num">06</span>
+                        <h3 id="mod-06">Configuración de la interfaz</h3>
+                        <span class="module-meta">HTML + CSS + JS</span>
+                    </header>
+                    <div class="module-body">
+                        <div class="palette-box">
+                            <div class="swatches" aria-hidden="true">
+                                <span class="swatch" style="background:#050c1a"></span>
+                                <span class="swatch" style="background:#08152c"></span>
+                                <span class="swatch" style="background:#00b4d8"></span>
+                                <span class="swatch" style="background:#0093ad"></span>
+                                <span class="swatch" style="background:#f0f3f8"></span>
+                            </div>
+                            <p class="palette-name">Paleta MecaGest Desktop</p>
+                            <p class="note">Azul institucional · Cian de acento</p>
+                        </div>
+
+                        <div class="color-row">
+                            <label for="fontColor">Color de la fuente</label>
+                            <span class="color-value" id="fontColorValor">#1e293b</span>
+                            <input type="color" id="fontColor" value="#1e293b">
+                        </div>
+                        <div class="color-row">
+                            <label for="backgroundColor">Color de fondo</label>
+                            <span class="color-value" id="backgroundColorValor">#f0f3f8</span>
+                            <input type="color" id="backgroundColor" value="#f0f3f8">
+                        </div>
+
+                        <div class="field">
+                            <label for="soundsVolume">Volumen de reproducción de sonidos: <strong id="volumenValor">80%</strong></label>
+                            <input type="range" id="soundsVolume" min="0" max="100" value="80">
+                            <div class="range-scale" aria-hidden="true"><span>0%</span><span>50%</span><span>100%</span></div>
+                        </div>
+                        <button type="button" id="muteSounds" class="btn btn-outline">Silenciar sonidos</button>
+                        <p class="note">La selección de colores y el volumen no alteran todavía la interfaz ni el audio.</p>
+                    </div>
+                </section>
+
+                <section class="module-card " aria-labelledby="mod-07">
+                    <header class="module-head">
+                        <span class="module-num">07</span>
+                        <h3 id="mod-07">Configuración de mi cuenta</h3>
+                        <span class="module-meta">HTML + CSS + JS</span>
+                    </header>
+                    <div class="module-body">
+                        <div class="profile-head">
+                            <div class="avatar" id="avatarPerfil" aria-hidden="true">MG</div>
+                            <div>
+                                <p class="palette-name">Perfil de MecaGest</p>
+                                <p class="note">Personalización de cuenta</p>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label for="userPhoto">Foto de perfil</label>
+                            <input type="file" id="userPhoto" accept="image/*">
+                            <p class="field-error" id="error-userPhoto" hidden></p>
+                            <p class="note">Formatos de imagen admitidos por el navegador.</p>
+                        </div>
+
+                        <div class="field">
+                            <p class="group-title">Botón gráfico <span class="tag">input:image</span></p>
+                            <input type="image" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMjAiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCAyMjAgNjQiPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iIzFmYzZlNiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzAwOTNhZCIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHdpZHRoPSIyMjAiIGhlaWdodD0iNjQiIHJ4PSIxNCIgZmlsbD0idXJsKCNnKSIvPjx0ZXh0IHg9IjExMCIgeT0iNDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJTZWdvZSBVSSwgQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiNmZmYiPlNJR1VJRU5URSDihpI8L3RleHQ+PC9zdmc+" alt="Siguiente" width="220" height="64" disabled>
+                            <p class="note">Control deshabilitado: el envío gráfico se conectará en clases posteriores.</p>
+                        </div>
+
+                        <input type="hidden" id="userId" value="25XXXX">
+                        <p class="note"><span class="tag">input:hidden</span> Identificador de ejemplo presente en el código HTML, pero no visible en pantalla.</p>
+
+                        <div class="field">
+                            <p class="group-title">Botón de envío <span class="tag">input:submit</span></p>
+                            <input type="submit" class="btn btn-secondary" value="Guardar (demostración)" disabled>
+                            <p class="note">Deshabilitado hasta conectar persistencia mediante PHP.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="module-card span-all" aria-labelledby="mod-09">
+                    <header class="module-head">
+                        <span class="module-num">09</span>
+                        <h3 id="mod-09">Datos fiscales</h3>
+                        <span class="module-meta">HTML + CSS + JS</span>
+                    </header>
+                    <div class="module-body">
+                        <div class="form-grid">
+                            <div class="field">
+                                <label for="rfc">Registro Federal de Contribuyentes (RFC)</label>
+                                <div class="input-wrap">
+                                    <span class="material-symbols-outlined" aria-hidden="true">badge</span>
+                                    <input type="text" id="rfc" maxlength="13" placeholder="RHAXXXXXXXXXXX" autocapitalize="characters">
+                                </div>
+                                <p class="field-hint">Máximo 13 caracteres: letras y números.</p>
+                            </div>
+                            <div class="field">
+                                <label for="fiscalSituation">Constancia de situación fiscal</label>
+                                <input type="file" id="fiscalSituation" accept=".pdf,application/pdf">
+                                <p class="field-error" id="error-fiscalSituation" hidden></p>
+                                <p class="note">Solo archivos PDF.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="../Practica04/js/modulos.js"></script>
+</body>
+</html>
