@@ -64,6 +64,6 @@ Gracias a este reto autónomo, se logró alojar un sitio web estático accesible
 |2.  |Mi Primer Página Web.| Codificar la primer página web con HTML puro, sin estilos ni funcionalidades.| 10 | 🟢 Concluida |
 |3.  |Mi Primer Página Web.| Codificación de primer página web| 30 | 🟢 Concluida |
 |4.  |Mi Primer Página Web en GitHub Pages.| Hospedaje de la página web| 10 | 🟢 Concluida |
-|5.  |Registros de Usuario en el Sistema de MecaGest | Crecacion del Formulario de Registro de Usuarios |30 | 🟢 Concluida |
+|5.  |Registros de Usuario en el Sistema de MecaGest | Crecacion del Formulario de Registro de Usuarios |00 | 🟢 Concluida |
 
 
