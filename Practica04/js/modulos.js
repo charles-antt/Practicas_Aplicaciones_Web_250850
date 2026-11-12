@@ -148,7 +148,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     /* =====================================================
-       CONFIGURACIÓN: interfaz, cuenta y datos fiscales
+       CONFIGURACIÓN: interfaz y cuenta
        ===================================================== */
     const volumen = $("soundsVolume");
     if (volumen) {
@@ -197,23 +197,96 @@ document.addEventListener("DOMContentLoaded", function () {
             img.alt = "Foto de perfil";
             avatar.appendChild(img);
         });
+    }
 
-        // RFC: mayúsculas y solo letras, números, & y Ñ
+    /* =====================================================
+       CONFIGURACIÓN: datos fiscales (facturación opcional)
+       ===================================================== */
+    const formFiscal = $("formFiscal");
+    if (formFiscal) {
+        const quiere = $("quiereFacturacion");
+        const panel = $("panelFacturacion");
+        const campos = [...panel.querySelectorAll("input, select")];
         const rfc = $("rfc");
+        const cpFiscal = $("cpFiscal");
+        const constancia = $("fiscalSituation");
+        const banner = $("bannerFiscal");
+        const RFC_VALIDO = /^[A-ZÑ&]{3,4}\d{6}[A-Z0-9]{3}$/;
+
+        // Devuelve true si el campo es válido (y muestra u oculta su aviso)
+        function validar(el) {
+            if (el.disabled) return ponerError(el, "");
+            if (el === rfc) {
+                if (rfc.value.trim() === "") return ponerError(rfc, "Este campo es obligatorio.");
+                return ponerError(rfc, RFC_VALIDO.test(rfc.value) ? "" : "Ingresa un RFC válido (12 o 13 caracteres, ej. ABCD010203XYZ).");
+            }
+            if (el === cpFiscal) {
+                if (cpFiscal.value === "") return ponerError(cpFiscal, ""); // opcional
+                return ponerError(cpFiscal, /^\d{5}$/.test(cpFiscal.value) ? "" : "El código postal debe tener 5 dígitos.");
+            }
+            if (el === constancia) {
+                const archivo = constancia.files[0];
+                return ponerError(constancia, archivo && archivo.type !== "application/pdf" ? "Selecciona un archivo en formato PDF." : "");
+            }
+            return true;
+        }
+
+        // Los campos solo se activan si se marca la casilla
+        function sincronizar(enfocar) {
+            const activo = quiere.checked;
+            panel.hidden = !activo;
+            campos.forEach(el => { el.disabled = !activo; });
+            if (!activo) campos.forEach(validar); // limpia avisos de error
+            else if (enfocar) rfc.focus();
+        }
+        quiere.addEventListener("change", () => { banner.hidden = true; sincronizar(true); });
+
+        // RFC: mayúsculas y solo letras, números, & y Ñ (máximo 13)
         rfc.addEventListener("input", function () {
-            rfc.value = rfc.value.toUpperCase().replace(/[^A-ZÑ&0-9]/g, "");
+            rfc.value = rfc.value.toUpperCase().replace(/[^A-ZÑ&0-9]/g, "").slice(0, 13);
+            if (rfc.closest(".field").classList.contains("is-invalid")) validar(rfc);
         });
 
-        // Constancia fiscal: solo PDF
-        const constancia = $("fiscalSituation");
-        constancia.addEventListener("change", function () {
-            const archivo = constancia.files[0];
-            ponerError(constancia, "");
-            if (archivo && archivo.type !== "application/pdf") {
-                ponerError(constancia, "Selecciona un archivo en formato PDF.");
-                constancia.value = "";
-            }
+        // Código postal fiscal: solo 5 dígitos
+        cpFiscal.addEventListener("input", function () {
+            cpFiscal.value = cpFiscal.value.replace(/\D/g, "").slice(0, 5);
+            if (cpFiscal.closest(".field").classList.contains("is-invalid")) validar(cpFiscal);
         });
+
+        // Constancia: solo PDF (si no lo es, se descarta el archivo y queda el aviso)
+        constancia.addEventListener("change", function () {
+            if (!validar(constancia)) constancia.value = "";
+        });
+
+        // Al salir de un campo con contenido se revisa su formato
+        [rfc, cpFiscal].forEach(el => el.addEventListener("blur", () => {
+            if (el.value !== "" || el.closest(".field").classList.contains("is-invalid")) validar(el);
+        }));
+
+        // Guardar (simulado)
+        formFiscal.addEventListener("submit", function (e) {
+            e.preventDefault();
+            if (!quiere.checked) {
+                mostrarBanner(banner, "No hay datos de facturación por guardar. Marca la casilla si deseas proporcionarlos.", "info");
+                return;
+            }
+            let primero = null;
+            campos.forEach(el => { if (!validar(el) && !primero) primero = el; });
+            if (primero) {
+                mostrarBanner(banner, "Completa los campos obligatorios antes de continuar.", "warning");
+                primero.focus();
+                return;
+            }
+            mostrarBanner(banner, "¡Datos fiscales revisados! Envío simulado: los datos no se almacenan.", "success");
+        });
+
+        // "Limpiar": vuelve a apagar la facturación y quita avisos
+        formFiscal.addEventListener("reset", function () {
+            banner.hidden = true;
+            setTimeout(() => sincronizar(false), 0);
+        });
+
+        sincronizar(false);
     }
 
     /* =====================================================

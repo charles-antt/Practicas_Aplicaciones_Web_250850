@@ -312,6 +312,13 @@ document.addEventListener("DOMContentLoaded", function () {
     function validarCampo(el) {
         const contenedor = el.closest(".field");
         if (!contenedor) return true; // casillas sueltas (redes sociales) no se validan
+        if (el.disabled) {            // campos apagados (p. ej. facturación sin activar) no se validan
+            const errorOff = $("error-" + el.id);
+            contenedor.classList.remove("is-invalid");
+            el.removeAttribute("aria-invalid");
+            if (errorOff) { errorOff.hidden = true; errorOff.textContent = ""; }
+            return true;
+        }
         const mensaje = mensajeDe(el);
         const errorEl = $("error-" + el.id);
         contenedor.classList.toggle("is-invalid", mensaje !== "");

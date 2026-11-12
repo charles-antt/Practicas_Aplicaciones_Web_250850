@@ -157,22 +157,97 @@
                         <span class="module-meta">HTML + CSS + JS</span>
                     </header>
                     <div class="module-body">
+                        <div class="form-banner" id="bannerFiscal" role="alert" hidden></div>
+                        <form id="formFiscal" novalidate>
+                    <div class="field-wide billing-toggle">
+                        <label class="terms billing-label" for="quiereFacturacion">
+                            <input type="checkbox" id="quiereFacturacion" name="quiereFacturacion">
+                            <span>Deseo proporcionar datos de facturación</span>
+                        </label>
+                        <p class="note">Esta etapa es opcional. Si no necesitas facturación, puedes finalizar sin llenar estos campos.</p>
+                    </div>
+
+                    <div class="field-wide billing-box" id="panelFacturacion" hidden>
                         <div class="form-grid">
                             <div class="field">
-                                <label for="rfc">Registro Federal de Contribuyentes (RFC)</label>
+                                <label for="rfc">RFC <span class="req" aria-hidden="true">*</span></label>
                                 <div class="input-wrap">
-                                    <span class="material-symbols-outlined" aria-hidden="true">badge</span>
-                                    <input type="text" id="rfc" maxlength="13" placeholder="RHAXXXXXXXXXXX" autocapitalize="characters">
+                                    <span class="material-symbols-outlined" aria-hidden="true">description</span>
+                                    <input type="text" id="rfc" name="rfc" placeholder="Ej. ABCD010203XYZ" autocapitalize="characters" autocomplete="off" required disabled>
                                 </div>
-                                <p class="field-hint">Máximo 13 caracteres: letras y números.</p>
+                                <p class="field-error" id="error-rfc" hidden></p>
                             </div>
                             <div class="field">
-                                <label for="fiscalSituation">Constancia de situación fiscal</label>
-                                <input type="file" id="fiscalSituation" accept=".pdf,application/pdf">
+                                <label for="razonSocial">Nombre o razón social</label>
+                                <div class="input-wrap">
+                                    <span class="material-symbols-outlined" aria-hidden="true">apartment</span>
+                                    <input type="text" id="razonSocial" name="razonSocial" placeholder="Nombre para facturación" autocomplete="organization" disabled>
+                                </div>
+                                <p class="field-error" id="error-razonSocial" hidden></p>
+                            </div>
+                            <div class="field">
+                                <label for="regimenFiscal">Régimen fiscal</label>
+                                <div class="input-wrap">
+                                    <span class="material-symbols-outlined" aria-hidden="true">article</span>
+                                    <select id="regimenFiscal" name="regimenFiscal" disabled>
+                                        <option value="" selected>Seleccionar régimen</option>
+                                        <option value="601">601 · General de Ley Personas Morales</option>
+                                        <option value="603">603 · Personas Morales con Fines no Lucrativos</option>
+                                        <option value="605">605 · Sueldos y Salarios e Ingresos Asimilados a Salarios</option>
+                                        <option value="606">606 · Arrendamiento</option>
+                                        <option value="612">612 · Personas Físicas con Actividades Empresariales y Profesionales</option>
+                                        <option value="616">616 · Sin obligaciones fiscales</option>
+                                        <option value="621">621 · Incorporación Fiscal</option>
+                                        <option value="625">625 · Actividades Empresariales con ingresos a través de Plataformas Tecnológicas</option>
+                                        <option value="626">626 · Régimen Simplificado de Confianza</option>
+                                    </select>
+                                </div>
+                                <p class="field-error" id="error-regimenFiscal" hidden></p>
+                            </div>
+                            <div class="field">
+                                <label for="usoCFDI">Uso del CFDI</label>
+                                <div class="input-wrap">
+                                    <span class="material-symbols-outlined" aria-hidden="true">receipt_long</span>
+                                    <select id="usoCFDI" name="usoCFDI" disabled>
+                                        <option value="" selected>Seleccionar uso</option>
+                                        <option value="G01">G01 · Adquisición de mercancías</option>
+                                        <option value="G02">G02 · Devoluciones, descuentos o bonificaciones</option>
+                                        <option value="G03">G03 · Gastos en general</option>
+                                        <option value="I01">I01 · Construcciones</option>
+                                        <option value="I02">I02 · Mobiliario y equipo de oficina por inversiones</option>
+                                        <option value="I04">I04 · Equipo de cómputo y accesorios</option>
+                                        <option value="I05">I05 · Dados, troqueles, moldes, matrices y herramental</option>
+                                        <option value="I06">I06 · Comunicaciones telefónicas</option>
+                                        <option value="I08">I08 · Otra maquinaria y equipo</option>
+                                        <option value="S01">S01 · Sin efectos fiscales</option>
+                                        <option value="CP01">CP01 · Pagos</option>
+                                    </select>
+                                </div>
+                                <p class="field-error" id="error-usoCFDI" hidden></p>
+                            </div>
+                            <div class="field">
+                                <label for="cpFiscal">Código postal fiscal</label>
+                                <div class="input-wrap">
+                                    <span class="material-symbols-outlined" aria-hidden="true">location_on</span>
+                                    <input type="text" id="cpFiscal" name="cpFiscal" placeholder="5 dígitos" inputmode="numeric" autocomplete="postal-code" disabled>
+                                </div>
+                                <p class="field-error" id="error-cpFiscal" hidden></p>
+                            </div>
+                            <div class="field">
+                                <label for="fiscalSituation">Constancia de situación fiscal (PDF)</label>
+                                <input type="file" id="fiscalSituation" name="fiscalSituation" accept=".pdf,application/pdf" disabled>
                                 <p class="field-error" id="error-fiscalSituation" hidden></p>
-                                <p class="note">Solo archivos PDF.</p>
+                                <p class="note">Archivo opcional. La carga real y su revisión se implementarán en PHP.</p>
                             </div>
                         </div>
+                        <p class="note billing-disclaimer">Datos de ejemplo para fines académicos. Antes de una facturación real, deberán comprobarse los catálogos del SAT, el régimen y los requisitos de CFDI vigentes.</p>
+                    </div>
+
+                            <div class="module-actions">
+                                <button type="reset" class="btn btn-secondary">Limpiar</button>
+                                <button type="submit" class="btn btn-primary">Guardar datos fiscales <span class="material-symbols-outlined" aria-hidden="true">check</span></button>
+                            </div>
+                        </form>
                     </div>
                 </section>
 
